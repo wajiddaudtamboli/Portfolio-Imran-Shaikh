@@ -4,13 +4,13 @@ import { Button, ButtonProps } from './button';
 import { cn } from '@/lib/utils';
 import { useGoldTheme } from '@/contexts/GoldThemeContext';
 
-interface GoldButtonProps extends ButtonProps {
-  variant?: 'solid' | 'outline' | 'luxury';
+interface GoldButtonProps extends Omit<ButtonProps, 'variant'> {
+  goldVariant?: 'solid' | 'outline' | 'luxury';
   goldEffect?: boolean;
 }
 
 export const GoldButton = React.forwardRef<HTMLButtonElement, GoldButtonProps>(
-  ({ className, variant = 'luxury', goldEffect = true, children, ...props }, ref) => {
+  ({ className, goldVariant = 'luxury', goldEffect = true, children, ...props }, ref) => {
     const { isPremium } = useGoldTheme();
 
     const goldVariants = {
@@ -27,7 +27,7 @@ export const GoldButton = React.forwardRef<HTMLButtonElement, GoldButtonProps>(
       <Button
         ref={ref}
         className={cn(
-          goldVariants[variant],
+          goldVariants[goldVariant],
           goldEffect && 'gold-pulse hover:scale-105 transition-all duration-300',
           className
         )}

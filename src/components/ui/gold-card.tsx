@@ -1,10 +1,10 @@
 
 import React from 'react';
-import { Card, CardProps } from './card';
+import { Card } from './card';
 import { cn } from '@/lib/utils';
 import { useGoldTheme } from '@/contexts/GoldThemeContext';
 
-interface GoldCardProps extends CardProps {
+interface GoldCardProps extends React.HTMLAttributes<HTMLDivElement> {
   luxury?: boolean;
   animated?: boolean;
 }
