@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
@@ -7,7 +8,6 @@ import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ContactSection from '@/components/ContactSection';
 import { GoldParticles } from '@/components/GoldParticles';
-import { ResponsiveShowcase } from '@/components/ResponsiveShowcase';
 
 const Index = () => {
   return (
@@ -19,7 +19,6 @@ const Index = () => {
             <Header />
             <main className="relative z-10">
               <HeroSection />
-              <ResponsiveShowcase />
               <AboutSection />
               <ContactSection />
             </main>
