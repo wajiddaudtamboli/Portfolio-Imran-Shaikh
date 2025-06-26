@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'playfair': ['Playfair Display', 'Georgia', 'serif'],
+				'montserrat': ['Montserrat', 'system-ui', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -61,6 +66,20 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Gold Premium Palette
+				gold: {
+					50: '#FFFEF7',
+					100: '#FEFCEC',
+					200: '#FEF7C3',
+					300: '#FDF2A3',
+					400: '#FCEA2B',
+					500: '#FFD700', // Primary Gold
+					600: '#E6C200',
+					700: '#CC9900',
+					800: '#B8860B', // Dark Gold
+					900: '#9A7209',
+					950: '#664C03'
 				}
 			},
 			borderRadius: {
@@ -84,11 +103,31 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'shimmer': {
+					'0%': { left: '-100%' },
+					'50%': { left: '100%' },
+					'100%': { left: '100%' }
+				},
+				'goldPulse': {
+					'0%, 100%': { 
+						boxShadow: '0 0 20px rgba(255, 215, 0, 0.5)'
+					},
+					'50%': { 
+						boxShadow: '0 0 40px rgba(255, 215, 0, 0.8)'
+					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'shimmer': 'shimmer 3s infinite',
+				'gold-pulse': 'goldPulse 2s infinite',
+				'float': 'float 3s ease-in-out infinite'
 			}
 		}
 	},
