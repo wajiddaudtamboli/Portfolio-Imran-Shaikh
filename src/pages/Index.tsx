@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
@@ -8,10 +7,8 @@ import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ContactSection from '@/components/ContactSection';
 import { GoldParticles } from '@/components/GoldParticles';
-
 const Index = () => {
-  return (
-    <ThemeProvider>
+  return <ThemeProvider>
       <GoldThemeProvider>
         <LanguageProvider>
           <div className="min-h-screen bg-background text-foreground relative">
@@ -24,7 +21,7 @@ const Index = () => {
             </main>
             
             {/* Premium Footer */}
-            <footer className="bg-muted/30 py-8 border-t border-primary/20 relative">
+            <footer className="py-8 border-t border-primary/20 relative bg-fuchsia-950">
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
               <div className="container mx-auto px-4">
                 <div className="text-center text-muted-foreground">
@@ -39,8 +36,6 @@ const Index = () => {
           </div>
         </LanguageProvider>
       </GoldThemeProvider>
-    </ThemeProvider>
-  );
+    </ThemeProvider>;
 };
-
 export default Index;
