@@ -3,79 +3,79 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Gold Premium Design System */
+/* Premium Emerald Design System */
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 158 64% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 158 64% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 158 64% 10%;
 
-    /* Gold Premium Colors */
-    --primary: 45 100% 51%; /* Gold #FFD700 */
-    --primary-foreground: 220 13% 18%; /* Dark for gold backgrounds */
+    /* Premium Emerald Colors */
+    --primary: 158 64% 52%; /* Emerald #10B981 */
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 220 13% 91%;
-    --secondary-foreground: 220 9% 46%;
+    --secondary: 162 63% 41%; /* Teal */
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 220 13% 96%;
-    --muted-foreground: 220 9% 46%;
+    --muted: 158 30% 95%;
+    --muted-foreground: 158 25% 35%;
 
-    --accent: 45 96% 64%; /* Light Gold */
-    --accent-foreground: 220 13% 18%;
+    --accent: 160 60% 45%; /* Deep Emerald */
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 45 100% 51%; /* Gold ring */
+    --border: 158 30% 91%;
+    --input: 158 30% 91%;
+    --ring: 158 64% 52%;
 
     --radius: 0.75rem;
 
-    /* Gold Theme Variables */
-    --gold-primary: #FFD700;
-    --gold-secondary: #FFA500;
-    --gold-accent: #FFEF94;
-    --gold-dark: #B8860B;
-    --rich-black: #121212;
-    --silver: #C0C0C0;
+    /* Premium Theme Variables */
+    --emerald-primary: #10B981;
+    --emerald-secondary: #059669;
+    --emerald-accent: #34D399;
+    --emerald-dark: #047857;
+    --rich-black: #0F0F0F;
+    --premium-white: #FAFAFA;
   }
 
   .dark {
-    --background: 220 13% 7%; /* Rich Black */
-    --foreground: 220 13% 97%;
+    --background: 158 50% 4%; /* Rich Dark Green */
+    --foreground: 158 30% 95%;
 
-    --card: 220 13% 9%;
-    --card-foreground: 220 13% 97%;
+    --card: 158 50% 6%;
+    --card-foreground: 158 30% 95%;
 
-    --popover: 220 13% 9%;
-    --popover-foreground: 220 13% 97%;
+    --popover: 158 50% 6%;
+    --popover-foreground: 158 30% 95%;
 
-    /* Gold remains consistent in dark mode */
-    --primary: 45 100% 51%;
-    --primary-foreground: 220 13% 7%;
+    /* Emerald remains vibrant in dark mode */
+    --primary: 158 64% 52%;
+    --primary-foreground: 158 50% 4%;
 
-    --secondary: 220 13% 15%;
-    --secondary-foreground: 220 13% 90%;
+    --secondary: 162 63% 41%;
+    --secondary-foreground: 158 50% 4%;
 
-    --muted: 220 13% 15%;
-    --muted-foreground: 220 9% 63%;
+    --muted: 158 30% 15%;
+    --muted-foreground: 158 20% 70%;
 
-    --accent: 45 96% 64%;
-    --accent-foreground: 220 13% 7%;
+    --accent: 160 60% 45%;
+    --accent-foreground: 158 50% 4%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 13% 15%;
-    --input: 220 13% 15%;
-    --ring: 45 100% 51%;
+    --border: 158 30% 15%;
+    --input: 158 30% 15%;
+    --ring: 158 64% 52%;
   }
 }
 
@@ -91,44 +91,50 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', Georgia, serif;
+    @apply text-emerald-900 dark:text-emerald-100;
+  }
+
+  /* Custom container for wider layout */
+  .container-wide {
+    @apply max-w-8xl mx-auto px-8 lg:px-16 xl:px-24;
   }
 }
 
 @layer components {
-  /* Gold Premium Components */
-  .gold-gradient {
-    background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+  /* Premium Emerald Components */
+  .emerald-gradient {
+    background: linear-gradient(135deg, #10B981, #059669, #047857);
   }
 
-  .gold-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600;
+  .emerald-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600;
   }
 
-  .gold-border {
-    border-image: linear-gradient(45deg, #FFD700, #FFA500, #FFD700) 1;
+  .emerald-border {
+    border-image: linear-gradient(45deg, #10B981, #059669, #047857) 1;
   }
 
-  .gold-shadow {
-    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+  .emerald-shadow {
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
   }
 
-  .gold-card {
-    @apply bg-card border border-primary/20 rounded-lg shadow-lg relative overflow-hidden;
+  .premium-card {
+    @apply bg-card border border-emerald-200 dark:border-emerald-700 rounded-lg shadow-lg relative overflow-hidden;
   }
 
-  .gold-card::before {
+  .premium-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #FFD700, transparent);
+    background: linear-gradient(90deg, transparent, #10B981, transparent);
     animation: shimmer 3s infinite;
   }
 
   .luxury-button {
-    @apply relative overflow-hidden bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg;
+    @apply relative overflow-hidden bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg;
   }
 
   .luxury-button::before {
@@ -153,12 +159,12 @@
     100% { left: 100%; }
   }
 
-  @keyframes goldPulse {
+  @keyframes emeraldPulse {
     0%, 100% { 
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
     }
     50% { 
-      box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+      box-shadow: 0 0 40px rgba(16, 185, 129, 0.8);
     }
   }
 
@@ -167,30 +173,18 @@
     50% { transform: translateY(-10px); }
   }
 
-  .gold-pulse {
-    animation: goldPulse 2s infinite;
+  .emerald-pulse {
+    animation: emeraldPulse 2s infinite;
   }
 
   .float-animation {
     animation: float 3s ease-in-out infinite;
   }
 
-  /* Gold Particle Background */
-  .gold-particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0.1;
-  }
-
-  /* Luxury Section Dividers */
-  .gold-divider {
+  /* Premium Section Dividers */
+  .emerald-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, #FFD700, transparent);
+    background: linear-gradient(90deg, transparent, #10B981, transparent);
     margin: 2rem 0;
   }
 
@@ -198,20 +192,38 @@
   .luxury-heading {
     @apply text-4xl lg:text-6xl font-bold mb-6;
     font-family: 'Playfair Display', serif;
-    background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+    background: linear-gradient(135deg, #10B981, #059669, #047857);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .premium-subtitle {
-    @apply text-lg lg:text-xl text-muted-foreground font-medium;
+    @apply text-lg lg:text-xl text-emerald-700 dark:text-emerald-300 font-medium;
     font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Enhanced spacing and layout */
+  .section-spacing {
+    @apply py-24 lg:py-32;
+  }
+
+  .content-spacing {
+    @apply space-y-12 lg:space-y-16;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Custom width utilities */
+  .max-w-8xl {
+    max-width: 88rem;
+  }
+
+  .max-w-9xl {
+    max-width: 96rem;
   }
 }
