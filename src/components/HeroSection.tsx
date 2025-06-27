@@ -95,20 +95,53 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* Profile Image */}
+            {/* Profile Image with Tech Stack */}
             <div className="flex justify-center lg:justify-end">
               <div className="relative">
-                <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                  <div className="w-72 h-72 lg:w-88 lg:h-88 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-6xl font-bold">
-                    IS
+                {/* Media Frame - Desktop/Tablet View */}
+                <div className="hidden md:block relative">
+                  <div className="w-96 h-96 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 p-6 shadow-2xl">
+                    <img 
+                      src="/lovable-uploads/6951f3b5-4950-4d9c-bf95-55f92fb12c5b.png" 
+                      alt="Imran Usman Shaikh - Senior Design Engineer"
+                      className="w-full h-full object-contain rounded-xl"
+                    />
                   </div>
                 </div>
-                {/* Floating Elements */}
-                <div className="absolute -top-4 -right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">
-                  3D
+
+                {/* Media Frame - Mobile View */}
+                <div className="md:hidden relative">
+                  <div className="w-80 h-80 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 p-4 shadow-2xl">
+                    <img 
+                      src="/lovable-uploads/6951f3b5-4950-4d9c-bf95-55f92fb12c5b.png" 
+                      alt="Imran Usman Shaikh - Senior Design Engineer"
+                      className="w-full h-full object-contain rounded-xl"
+                    />
+                  </div>
                 </div>
-                <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-secondary rounded-full flex items-center justify-center text-white font-bold text-sm">
-                  CAD
+
+                {/* Tech Stack Floating Elements */}
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-lg">
+                  📐
+                </div>
+                <div className="absolute -bottom-4 -left-4 w-18 h-18 bg-green-500 rounded-full flex items-center justify-center text-white text-2xl shadow-lg">
+                  🏗️
+                </div>
+                <div className="absolute top-1/4 -left-6 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white text-lg shadow-lg">
+                  ⚙️
+                </div>
+                <div className="absolute bottom-1/4 -right-6 w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white text-lg shadow-lg">
+                  🖥️
+                </div>
+                <div className="absolute top-8 right-1/4 w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white text-sm shadow-lg">
+                  📊
+                </div>
+
+                {/* Portfolio Skills Labels */}
+                <div className="absolute -bottom-12 left-0 right-0 flex justify-center gap-2 flex-wrap">
+                  <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">AutoCAD</span>
+                  <span className="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-medium">STAAD Pro</span>
+                  <span className="bg-green-500/10 text-green-600 px-3 py-1 rounded-full text-sm font-medium">Revit</span>
                 </div>
               </div>
             </div>
