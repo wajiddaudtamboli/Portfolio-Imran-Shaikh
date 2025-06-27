@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Mail, Phone, MapPin, Linkedin, MessageCircle, Download } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Github, Download } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const { translations } = useLanguage();
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
       { name: 'Project Management', href: '#services' }
     ],
     resources: [
-      { name: 'Resume Download', href: '/resume-imran-shaikh.pdf' },
+      { name: 'Resume Download', href: '/placeholder-resume.pdf' },
       { name: 'Portfolio', href: '#projects' },
       { name: 'Certifications', href: '#education' },
       { name: 'Skills', href: '#skills' }
@@ -28,21 +28,9 @@ const Footer: React.FC = () => {
   };
 
   const socialLinks = [
-    { 
-      name: 'LinkedIn', 
-      icon: Linkedin, 
-      href: 'https://www.linkedin.com/in/imran-shaikh-06785a300' 
-    },
-    { 
-      name: 'WhatsApp', 
-      icon: MessageCircle, 
-      href: 'https://wa.me/918698839883' 
-    },
-    { 
-      name: 'Email', 
-      icon: Mail, 
-      href: 'mailto:imraanshaikh039@gmail.com' 
-    }
+    { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/in/imran-shaikh' },
+    { name: 'GitHub', icon: Github, href: 'https://github.com/imran-shaikh' },
+    { name: 'Email', icon: Mail, href: 'mailto:imraanshaikh039@gmail.com' }
   ];
 
   const handleNewsletterSubscribe = () => {
@@ -58,14 +46,6 @@ const Footer: React.FC = () => {
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
-    } else if (href.includes('.pdf')) {
-      // Handle resume download
-      const link = document.createElement('a');
-      link.href = href;
-      link.download = 'Imran_Usman_Shaikh_Resume.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
     } else {
       window.open(href, '_blank');
     }

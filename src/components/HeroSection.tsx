@@ -14,16 +14,6 @@ const HeroSection = () => {
     }
   };
 
-  const downloadResume = () => {
-    // Create a dummy PDF download link - you can replace this with your actual resume file
-    const link = document.createElement('a');
-    link.href = '/resume-imran-shaikh.pdf'; // Place your PDF in the public folder
-    link.download = 'Imran_Usman_Shaikh_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background Pattern */}
@@ -77,7 +67,7 @@ const HeroSection = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="h-12 px-8" onClick={downloadResume}>
+                <Button size="lg" className="h-12 px-8">
                   <Download className="mr-2 h-4 w-4" />
                   {translations.home.downloadCV}
                 </Button>
