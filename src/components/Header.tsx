@@ -41,11 +41,11 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-emerald-200 dark:border-emerald-700 transition-all duration-300">
-      <div className="max-w-8xl mx-auto px-8 lg:px-16 xl:px-24 py-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border transition-all duration-300">
+      <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="text-3xl font-bold text-emerald-700 dark:text-emerald-300">
+          <div className="text-2xl font-bold text-foreground">
             IS
           </div>
 
@@ -55,7 +55,7 @@ const Header = () => {
               <button
                 key={item.key}
                 onClick={() => scrollToSection(item.href)}
-                className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors duration-200 font-medium text-lg"
+                className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
               >
                 {translations.nav[item.key]}
               </button>
@@ -69,28 +69,28 @@ const Header = () => {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              className="h-10 w-10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900"
+              className="h-9 w-9"
             >
               {isDarkMode ? (
-                <Sun className="h-5 w-5" />
+                <Sun className="h-4 w-4" />
               ) : (
-                <Moon className="h-5 w-5" />
+                <Moon className="h-4 w-4" />
               )}
             </Button>
 
             {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-10 w-10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900">
-                  <Globe className="h-5 w-5" />
+                <Button variant="ghost" size="icon" className="h-9 w-9">
+                  <Globe className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="bg-card border-emerald-200 dark:border-emerald-700">
+              <DropdownMenuContent align="end">
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
                     onClick={() => setLanguage(lang.code)}
-                    className={`text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900 ${language === lang.code ? 'bg-emerald-100 dark:bg-emerald-900' : ''}`}
+                    className={language === lang.code ? 'bg-accent' : ''}
                   >
                     {lang.native}
                   </DropdownMenuItem>
@@ -102,23 +102,23 @@ const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden h-10 w-10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900"
+              className="lg:hidden h-9 w-9"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
             </Button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="lg:hidden mt-4 pt-4 border-t border-emerald-200 dark:border-emerald-700">
+          <nav className="lg:hidden mt-4 pt-4 border-t border-border">
             <div className="flex flex-col space-y-2">
               {navItems.map((item) => (
                 <button
                   key={item.key}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-left py-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors duration-200 font-medium"
+                  className="text-left py-2 text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
                 >
                   {translations.nav[item.key]}
                 </button>

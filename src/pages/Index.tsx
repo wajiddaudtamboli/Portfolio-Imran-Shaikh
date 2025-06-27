@@ -20,10 +20,8 @@ const Index = () => {
             <Header />
             <main className="relative z-10">
               <HeroSection />
-              <div className="max-w-8xl mx-auto px-8 lg:px-16 xl:px-24">
-                <AboutSection />
-                <ContactSection />
-              </div>
+              <AboutSection />
+              <ContactSection />
             </main>
             <Footer />
           </div>
