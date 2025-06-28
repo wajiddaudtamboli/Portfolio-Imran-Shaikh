@@ -1,75 +1,66 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Download, Mail, Phone, MessageCircle } from 'lucide-react';
-
 const HeroSection = () => {
-  const { translations } = useLanguage();
+  const {
+    translations
+  } = useLanguage();
   const [profileInfo, setProfileInfo] = useState<any>({});
   const [contactInfo, setContactInfo] = useState<any>({});
-
   useEffect(() => {
     fetchProfileInfo();
     fetchContactInfo();
   }, []);
-
   const fetchProfileInfo = async () => {
     try {
-      const { data, error } = await supabase
-        .from('portfolio_settings')
-        .select('setting_value')
-        .eq('setting_key', 'profile_info')
-        .single();
-
+      const {
+        data,
+        error
+      } = await supabase.from('portfolio_settings').select('setting_value').eq('setting_key', 'profile_info').single();
       if (error) throw error;
       setProfileInfo(data?.setting_value || {});
     } catch (error) {
       console.error('Error fetching profile info:', error);
     }
   };
-
   const fetchContactInfo = async () => {
     try {
-      const { data, error } = await supabase
-        .from('portfolio_settings')
-        .select('setting_value')
-        .eq('setting_key', 'contact_info')
-        .single();
-
+      const {
+        data,
+        error
+      } = await supabase.from('portfolio_settings').select('setting_value').eq('setting_key', 'contact_info').single();
       if (error) throw error;
       setContactInfo(data?.setting_value || {});
     } catch (error) {
       console.error('Error fetching contact info:', error);
     }
   };
-
   const scrollToContact = () => {
     const element = document.querySelector('#contact');
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
   };
-
   const handleDownloadResume = () => {
     if (contactInfo.resume) {
       window.open(contactInfo.resume, '_blank');
     }
   };
-
-  return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+  return <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
       <div className="absolute inset-0 opacity-10">
         <svg width="60" height="60" viewBox="0 0 60 60" className="absolute inset-0 w-full h-full">
           <defs>
             <pattern id="dots" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-              <circle cx="30" cy="30" r="2" fill="currentColor" fillOpacity="0.5"/>
+              <circle cx="30" cy="30" r="2" fill="currentColor" fillOpacity="0.5" />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#dots)"/>
+          <rect width="100%" height="100%" fill="url(#dots)" />
         </svg>
       </div>
       
@@ -115,12 +106,7 @@ const HeroSection = () => {
                   <Download className="mr-2 h-4 w-4" />
                   {translations.home.downloadCV}
                 </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="h-12 px-8"
-                  onClick={scrollToContact}
-                >
+                <Button variant="outline" size="lg" className="h-12 px-8" onClick={scrollToContact}>
                   <Mail className="mr-2 h-4 w-4" />
                   {translations.home.contactMe}
                 </Button>
@@ -128,26 +114,15 @@ const HeroSection = () => {
 
               {/* Quick Contact */}
               <div className="flex flex-wrap gap-6 pt-4">
-                <a 
-                  href={`tel:${contactInfo.phone || "+918698839883"}`}
-                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer"
-                >
+                <a href={`tel:${contactInfo.phone || "+918698839883"}`} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
                   <Phone className="h-4 w-4" />
                   <span>{contactInfo.phone || "+91 8698839883"}</span>
                 </a>
-                <a 
-                  href={`mailto:${contactInfo.email || "imraanshaikh039@gmail.com"}`}
-                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer"
-                >
+                <a href={`mailto:${contactInfo.email || "imraanshaikh039@gmail.com"}`} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
                   <Mail className="h-4 w-4" />
                   <span>{contactInfo.email || "imraanshaikh039@gmail.com"}</span>
                 </a>
-                <a 
-                  href={`https://wa.me/${contactInfo.whatsapp || "918698839883"}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer"
-                >
+                <a href={`https://wa.me/${contactInfo.whatsapp || "918698839883"}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
                   <MessageCircle className="h-4 w-4" />
                   <span>WhatsApp</span>
                 </a>
@@ -160,22 +135,14 @@ const HeroSection = () => {
                 {/* Media Frame - Desktop/Tablet View */}
                 <div className="hidden md:block relative">
                   <div className="w-96 h-96 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 p-6 shadow-2xl">
-                    <img 
-                      src={profileInfo.profile_image || "/lovable-uploads/6951f3b5-4950-4d9c-bf95-55f92fb12c5b.png"} 
-                      alt={`${profileInfo.name || "Imran Usman Shaikh"} - ${profileInfo.title || "Senior Design Engineer"}`}
-                      className="w-full h-full object-contain rounded-xl"
-                    />
+                    <img src={profileInfo.profile_image || "/lovable-uploads/6951f3b5-4950-4d9c-bf95-55f92fb12c5b.png"} alt={`${profileInfo.name || "Imran Usman Shaikh"} - ${profileInfo.title || "Senior Design Engineer"}`} className="w-full h-full object-contain rounded-xl" />
                   </div>
                 </div>
 
                 {/* Media Frame - Mobile View */}
                 <div className="md:hidden relative">
                   <div className="w-80 h-80 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 p-4 shadow-2xl">
-                    <img 
-                      src={profileInfo.profile_image || "/lovable-uploads/6951f3b5-4950-4d9c-bf95-55f92fb12c5b.png"} 
-                      alt={`${profileInfo.name || "Imran Usman Shaikh"} - ${profileInfo.title || "Senior Design Engineer"}`}
-                      className="w-full h-full object-contain rounded-xl"
-                    />
+                    <img src={profileInfo.profile_image || "/lovable-uploads/6951f3b5-4950-4d9c-bf95-55f92fb12c5b.png"} alt={`${profileInfo.name || "Imran Usman Shaikh"} - ${profileInfo.title || "Senior Design Engineer"}`} className="w-full h-full object-contain rounded-xl" />
                   </div>
                 </div>
 
@@ -199,7 +166,7 @@ const HeroSection = () => {
                 {/* Portfolio Skills Labels */}
                 <div className="absolute -bottom-12 left-0 right-0 flex justify-center gap-2 flex-wrap">
                   <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">AutoCAD</span>
-                  <span className="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-medium">STAAD Pro</span>
+                  <span className="bg-secondary/10 px-3 py-1 rounded-full text-sm font-medium text-gray-50">STAAD Pro</span>
                   <span className="bg-green-500/10 text-green-600 px-3 py-1 rounded-full text-sm font-medium">Revit</span>
                 </div>
               </div>
@@ -207,8 +174,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
