@@ -1,11 +1,32 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { supabase } from '@/integrations/supabase/client';
 import { Award, Building, Calendar, MapPin } from 'lucide-react';
 
 const AboutSection = () => {
   const { translations } = useLanguage();
+  const [aboutData, setAboutData] = useState<any>({});
+
+  useEffect(() => {
+    fetchAboutData();
+  }, []);
+
+  const fetchAboutData = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('portfolio_sections')
+        .select('content')
+        .eq('section_type', 'about')
+        .single();
+
+      if (error) throw error;
+      setAboutData(data?.content || {});
+    } catch (error) {
+      console.error('Error fetching about data:', error);
+    }
+  };
 
   const highlights = [
     {
@@ -54,7 +75,7 @@ const AboutSection = () => {
             <div className="space-y-8">
               <div className="prose prose-lg max-w-none">
                 <p className="text-muted-foreground leading-relaxed text-lg">
-                  {translations.about.description}
+                  {aboutData.description || translations.about.description}
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
                   With extensive experience in steel engineering, scaffolding systems, and aluminium fabrication, 
@@ -116,14 +137,11 @@ const AboutSection = () => {
                     Core Strengths
                   </h3>
                   <div className="space-y-3">
-                    {[
+                    {(aboutData.highlights || [
                       "3D Modeling & 2D Drafting in AutoCAD",
                       "Structural & Reinforcement Drawing Interpretation",
-                      "BOM Creation & Building Estimation",
-                      "Fabrication & Manufacturing Drawing Preparation",
-                      "Segmental Precast Bridge Knowledge",
-                      "Site Coordination & Problem Solving"
-                    ].map((strength, index) => (
+                      "BOM Creation & Building Estimation"
+                    ]).map((strength: string, index: number) => (
                       <div key={index} className="flex items-center gap-2">
                         <div className="w-2 h-2 bg-primary rounded-full"></div>
                         <span className="text-muted-foreground">{strength}</span>

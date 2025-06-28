@@ -1,16 +1,60 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Download, Mail, Phone } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { Download, Mail, Phone, MessageCircle } from 'lucide-react';
 
 const HeroSection = () => {
   const { translations } = useLanguage();
+  const [profileInfo, setProfileInfo] = useState<any>({});
+  const [contactInfo, setContactInfo] = useState<any>({});
+
+  useEffect(() => {
+    fetchProfileInfo();
+    fetchContactInfo();
+  }, []);
+
+  const fetchProfileInfo = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('portfolio_settings')
+        .select('setting_value')
+        .eq('setting_key', 'profile_info')
+        .single();
+
+      if (error) throw error;
+      setProfileInfo(data?.setting_value || {});
+    } catch (error) {
+      console.error('Error fetching profile info:', error);
+    }
+  };
+
+  const fetchContactInfo = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('portfolio_settings')
+        .select('setting_value')
+        .eq('setting_key', 'contact_info')
+        .single();
+
+      if (error) throw error;
+      setContactInfo(data?.setting_value || {});
+    } catch (error) {
+      console.error('Error fetching contact info:', error);
+    }
+  };
 
   const scrollToContact = () => {
     const element = document.querySelector('#contact');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleDownloadResume = () => {
+    if (contactInfo.resume) {
+      window.open(contactInfo.resume, '_blank');
     }
   };
 
@@ -39,10 +83,10 @@ const HeroSection = () => {
                   {translations.home.greeting}
                 </p>
                 <h1 className="text-5xl lg:text-7xl font-bold text-foreground leading-tight">
-                  {translations.home.name}
+                  {profileInfo.name || translations.home.name}
                 </h1>
                 <h2 className="text-2xl lg:text-3xl font-semibold text-primary">
-                  {translations.home.title}
+                  {profileInfo.title || translations.home.title}
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
                   {translations.home.subtitle}
@@ -67,7 +111,7 @@ const HeroSection = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="h-12 px-8">
+                <Button size="lg" className="h-12 px-8" onClick={handleDownloadResume}>
                   <Download className="mr-2 h-4 w-4" />
                   {translations.home.downloadCV}
                 </Button>
@@ -84,14 +128,29 @@ const HeroSection = () => {
 
               {/* Quick Contact */}
               <div className="flex flex-wrap gap-6 pt-4">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <a 
+                  href={`tel:${contactInfo.phone || "+918698839883"}`}
+                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                >
                   <Phone className="h-4 w-4" />
-                  <span>+91 8698839883</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <span>{contactInfo.phone || "+91 8698839883"}</span>
+                </a>
+                <a 
+                  href={`mailto:${contactInfo.email || "imraanshaikh039@gmail.com"}`}
+                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                >
                   <Mail className="h-4 w-4" />
-                  <span>imraanshaikh039@gmail.com</span>
-                </div>
+                  <span>{contactInfo.email || "imraanshaikh039@gmail.com"}</span>
+                </a>
+                <a 
+                  href={`https://wa.me/${contactInfo.whatsapp || "918698839883"}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  <span>WhatsApp</span>
+                </a>
               </div>
             </div>
 
@@ -102,8 +161,8 @@ const HeroSection = () => {
                 <div className="hidden md:block relative">
                   <div className="w-96 h-96 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 p-6 shadow-2xl">
                     <img 
-                      src="/lovable-uploads/6951f3b5-4950-4d9c-bf95-55f92fb12c5b.png" 
-                      alt="Imran Usman Shaikh - Senior Design Engineer"
+                      src={profileInfo.profile_image || "/lovable-uploads/6951f3b5-4950-4d9c-bf95-55f92fb12c5b.png"} 
+                      alt={`${profileInfo.name || "Imran Usman Shaikh"} - ${profileInfo.title || "Senior Design Engineer"}`}
                       className="w-full h-full object-contain rounded-xl"
                     />
                   </div>
@@ -113,8 +172,8 @@ const HeroSection = () => {
                 <div className="md:hidden relative">
                   <div className="w-80 h-80 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 p-4 shadow-2xl">
                     <img 
-                      src="/lovable-uploads/6951f3b5-4950-4d9c-bf95-55f92fb12c5b.png" 
-                      alt="Imran Usman Shaikh - Senior Design Engineer"
+                      src={profileInfo.profile_image || "/lovable-uploads/6951f3b5-4950-4d9c-bf95-55f92fb12c5b.png"} 
+                      alt={`${profileInfo.name || "Imran Usman Shaikh"} - ${profileInfo.title || "Senior Design Engineer"}`}
                       className="w-full h-full object-contain rounded-xl"
                     />
                   </div>

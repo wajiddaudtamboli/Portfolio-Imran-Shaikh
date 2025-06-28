@@ -1,12 +1,13 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { Mail, Phone, MapPin, Send, MessageCircle, Linkedin } from 'lucide-react';
 
 const ContactSection = () => {
   const { translations } = useLanguage();
@@ -17,19 +18,51 @@ const ContactSection = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [contactInfo, setContactInfo] = useState<any>({});
 
-  const contactInfo = [
+  useEffect(() => {
+    fetchContactInfo();
+  }, []);
+
+  const fetchContactInfo = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('portfolio_settings')
+        .select('setting_value')
+        .eq('setting_key', 'contact_info')
+        .single();
+
+      if (error) throw error;
+      setContactInfo(data?.setting_value || {});
+    } catch (error) {
+      console.error('Error fetching contact info:', error);
+    }
+  };
+
+  const contactInfoItems = [
     {
       icon: <Phone className="h-5 w-5" />,
       label: "Phone",
-      value: "+91 8698839883",
-      href: "tel:+918698839883"
+      value: contactInfo.phone || "+91 8698839883",
+      href: `tel:${contactInfo.phone || "+918698839883"}`
     },
     {
       icon: <Mail className="h-5 w-5" />,
       label: "Email",
-      value: "imraanshaikh039@gmail.com",
-      href: "mailto:imraanshaikh039@gmail.com"
+      value: contactInfo.email || "imraanshaikh039@gmail.com",
+      href: `mailto:${contactInfo.email || "imraanshaikh039@gmail.com"}`
+    },
+    {
+      icon: <MessageCircle className="h-5 w-5" />,
+      label: "WhatsApp",
+      value: `+91 ${contactInfo.whatsapp || "8698839883"}`,
+      href: `https://wa.me/${contactInfo.whatsapp || "918698839883"}`
+    },
+    {
+      icon: <Linkedin className="h-5 w-5" />,
+      label: "LinkedIn",
+      value: "LinkedIn Profile",
+      href: contactInfo.linkedin || "https://www.linkedin.com/in/imran-shaikh-06785a3a00"
     },
     {
       icon: <MapPin className="h-5 w-5" />,
@@ -96,7 +129,7 @@ const ContactSection = () => {
                   {translations.contact.info}
                 </h3>
                 <div className="space-y-6">
-                  {contactInfo.map((info, index) => (
+                  {contactInfoItems.map((info, index) => (
                     <div key={index} className="flex items-start gap-4">
                       <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
                         {info.icon}
@@ -108,7 +141,9 @@ const ContactSection = () => {
                         {info.href ? (
                           <a 
                             href={info.href}
-                            className="text-muted-foreground hover:text-primary transition-colors"
+                            target={info.href.startsWith('http') ? '_blank' : undefined}
+                            rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                            className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                           >
                             {info.value}
                           </a>

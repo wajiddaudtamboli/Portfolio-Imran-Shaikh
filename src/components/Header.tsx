@@ -6,6 +6,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { Menu, X, Sun, Moon, Globe, Shield, LogOut } from 'lucide-react';
 import AdminLogin from '@/components/AdminLogin';
+import AdminPanel from '@/components/AdminPanel';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,6 +17,7 @@ import {
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showAdminLogin, setShowAdminLogin] = useState(false);
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
   const { language, setLanguage, translations } = useLanguage();
   const { isDarkMode, toggleTheme } = useTheme();
   const { user, signOut, isAdmin } = useAuth();
@@ -46,10 +48,8 @@ const Header = () => {
 
   const handleAdminClick = () => {
     if (user && isAdmin) {
-      // User is already logged in as admin, show admin panel or navigate
-      console.log('Navigate to admin panel');
+      setShowAdminPanel(true);
     } else {
-      // Show login modal
       setShowAdminLogin(true);
     }
   };
@@ -200,6 +200,11 @@ const Header = () => {
       {/* Admin Login Modal */}
       {showAdminLogin && (
         <AdminLogin onClose={() => setShowAdminLogin(false)} />
+      )}
+
+      {/* Admin Panel */}
+      {showAdminPanel && (
+        <AdminPanel onClose={() => setShowAdminPanel(false)} />
       )}
     </>
   );
