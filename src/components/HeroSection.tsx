@@ -64,13 +64,13 @@ const HeroSection = () => {
         </svg>
       </div>
       
-      <div className="container mx-auto px-4 relative z-10 py-[105px]">
+      <div className="container mx-auto px-4 py-32 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
             <div className="space-y-8">
               <div className="space-y-4">
-                <p className="text-lg font-medium text-red-300">
+                <p className="text-lg text-muted-foreground font-medium">
                   {translations.home.greeting}
                 </p>
                 <h1 className="text-5xl lg:text-7xl font-bold text-foreground leading-tight">
@@ -79,7 +79,7 @@ const HeroSection = () => {
                 <h2 className="text-2xl lg:text-3xl font-semibold text-primary">
                   {profileInfo.title || translations.home.title}
                 </h2>
-                <p className="text-lg leading-relaxed max-w-2xl text-gray-50">
+                <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
                   {translations.home.subtitle}
                 </p>
               </div>
@@ -116,26 +116,26 @@ const HeroSection = () => {
               <div className="flex flex-wrap gap-6 pt-4">
                 <a href={`tel:${contactInfo.phone || "+918698839883"}`} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
                   <Phone className="h-4 w-4" />
-                  <span className="text-base text-amber-400">{contactInfo.phone || "+91 8698839883"}</span>
+                  <span>{contactInfo.phone || "+91 8698839883"}</span>
                 </a>
                 <a href={`mailto:${contactInfo.email || "imraanshaikh039@gmail.com"}`} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
                   <Mail className="h-4 w-4" />
-                  <span className="text-base text-amber-300">{contactInfo.email || "imraanshaikh039@gmail.com"}</span>
+                  <span>{contactInfo.email || "imraanshaikh039@gmail.com"}</span>
                 </a>
                 <a href={`https://wa.me/${contactInfo.whatsapp || "918698839883"}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer">
                   <MessageCircle className="h-4 w-4" />
-                  <span className="text-yellow-300">WhatsApp</span>
+                  <span>WhatsApp</span>
                 </a>
               </div>
             </div>
 
             {/* Profile Image with Tech Stack */}
-            <div className="flex justify-center lg:justify-end mx-0">
+            <div className="flex justify-center lg:justify-end">
               <div className="relative">
                 {/* Media Frame - Desktop/Tablet View */}
                 <div className="hidden md:block relative">
                   <div className="w-96 h-96 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 p-6 shadow-2xl">
-                    <img src={profileInfo.profile_image || "/lovable-uploads/6951f3b5-4950-4d9c-bf95-55f92fb12c5b.png"} alt={`${profileInfo.name || "Imran Usman Shaikh"} - ${profileInfo.title || "Senior Design Engineer"}`} className="w-full h-full rounded-xl object-fill" />
+                    <img src={profileInfo.profile_image || "/lovable-uploads/6951f3b5-4950-4d9c-bf95-55f92fb12c5b.png"} alt={`${profileInfo.name || "Imran Usman Shaikh"} - ${profileInfo.title || "Senior Design Engineer"}`} className="w-full h-full object-contain rounded-xl" />
                   </div>
                 </div>
 
@@ -166,7 +166,7 @@ const HeroSection = () => {
                 {/* Portfolio Skills Labels */}
                 <div className="absolute -bottom-12 left-0 right-0 flex justify-center gap-2 flex-wrap">
                   <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">AutoCAD</span>
-                  <span className="bg-secondary/10 px-3 py-1 rounded-full text-sm font-medium text-red-400">STAAD Pro</span>
+                  <span className="bg-secondary/10 px-3 py-1 rounded-full text-sm font-medium text-gray-50">STAAD Pro</span>
                   <span className="bg-green-500/10 text-green-600 px-3 py-1 rounded-full text-sm font-medium">Revit</span>
                 </div>
               </div>
