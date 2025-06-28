@@ -24,6 +24,27 @@ const HeroSection = () => {
 
   const defaultProfileImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%231f2937'/%3E%3Ctext x='200' y='200' font-family='Arial, sans-serif' font-size='24' fill='%23ffffff' text-anchor='middle' dy='.3em'%3EProfile Image%3C/text%3E%3C/svg%3E";
 
+  // Function to handle image loading errors
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    console.log('Profile image failed to load, using fallback');
+    e.currentTarget.src = defaultProfileImage;
+  };
+
+  // Function to get the correct image URL
+  const getProfileImageUrl = () => {
+    if (!profileInfo.profile_image) {
+      return defaultProfileImage;
+    }
+    
+    // If it's a local path (starts with /), use fallback
+    if (profileInfo.profile_image.startsWith('/')) {
+      console.log('Local image path detected, using fallback');
+      return defaultProfileImage;
+    }
+    
+    return profileInfo.profile_image;
+  };
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">
       {/* Background Pattern */}
@@ -115,12 +136,10 @@ const HeroSection = () => {
                 <div className="hidden md:block relative">
                   <div className="w-96 h-96 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 p-6 shadow-2xl">
                     <img
-                      src={profileInfo.profile_image || defaultProfileImage}
+                      src={getProfileImageUrl()}
                       alt={`${profileInfo.name || "Imran Usman Shaikh"} - ${profileInfo.title || "Senior Design Engineer"}`}
                       className="w-full h-full object-cover rounded-xl border-4 border-[var(--gold)] shadow-lg"
-                      onError={(e) => {
-                        e.currentTarget.src = defaultProfileImage;
-                      }}
+                      onError={handleImageError}
                     />
                   </div>
                 </div>
@@ -129,12 +148,10 @@ const HeroSection = () => {
                 <div className="md:hidden relative">
                   <div className="w-80 h-80 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 p-4 shadow-2xl">
                     <img
-                      src={profileInfo.profile_image || defaultProfileImage}
+                      src={getProfileImageUrl()}
                       alt={`${profileInfo.name || "Imran Usman Shaikh"} - ${profileInfo.title || "Senior Design Engineer"}`}
                       className="w-full h-full object-cover rounded-xl border-4 border-[var(--gold)] shadow-lg"
-                      onError={(e) => {
-                        e.currentTarget.src = defaultProfileImage;
-                      }}
+                      onError={handleImageError}
                     />
                   </div>
                 </div>
