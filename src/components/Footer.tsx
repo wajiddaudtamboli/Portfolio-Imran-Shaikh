@@ -1,17 +1,22 @@
-
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Mail, Phone, MapPin, Linkedin, Github, Download } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Download, Heart } from 'lucide-react';
+
+const gold = '#FFD700';
 
 const Footer: React.FC = () => {
   const { translations } = useLanguage();
 
   const footerLinks = {
     quickLinks: [
-      { name: translations.nav.home, href: '#home' },
-      { name: translations.nav.about, href: '#about' },
-      { name: translations.nav.experience, href: '#experience' },
-      { name: translations.nav.contact, href: '#contact' }
+      { name: 'Home', href: '#home' },
+      { name: 'About', href: '#about' },
+      { name: 'Experience', href: '#experience' },
+      { name: 'Projects', href: '#projects' },
+      { name: 'Skills', href: '#skills' },
+      { name: 'Education', href: '#education' },
+      { name: 'Contact', href: '#contact' },
+      { name: 'Resume Download', href: 'https://drive.google.com/file/d/1s4DrpZOhWF5NqQWPHVmR-qiPxyuZmgMH/view?usp=sharing' }
     ],
     services: [
       { name: 'Structural Design', href: '#services' },
@@ -20,7 +25,7 @@ const Footer: React.FC = () => {
       { name: 'Project Management', href: '#services' }
     ],
     resources: [
-      { name: 'Resume Download', href: '/placeholder-resume.pdf' },
+      { name: 'Resume Download', href: '/' },
       { name: 'Portfolio', href: '#projects' },
       { name: 'Certifications', href: '#education' },
       { name: 'Skills', href: '#skills' }
@@ -29,7 +34,6 @@ const Footer: React.FC = () => {
 
   const socialLinks = [
     { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/in/imran-shaikh' },
-    { name: 'GitHub', icon: Github, href: 'https://github.com/imran-shaikh' },
     { name: 'Email', icon: Mail, href: 'mailto:imraanshaikh039@gmail.com' }
   ];
 
@@ -53,24 +57,31 @@ const Footer: React.FC = () => {
 
   return (
     <>
-      <footer className="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white dark:from-slate-950 dark:via-blue-950 dark:to-indigo-950">
+      <footer className="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-foreground dark:from-slate-950 dark:via-blue-950 dark:to-indigo-950 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.15)_1px,transparent_0)] bg-[length:20px_20px]"></div>
+        </div>
+
         {/* Newsletter Section */}
-        <div className="border-b border-white/10">
+        <div className="border-b border-white/10 relative z-10">
           <div className="container mx-auto px-4 py-12">
             <div className="text-center max-w-2xl mx-auto">
-              <h3 className="text-2xl font-bold mb-4">Stay Connected</h3>
-              <p className="text-gray-300 mb-6">
+              <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
+                Stay Connected
+              </h3>
+              <p className="text-muted-foreground mb-6 text-lg">
                 Get updates on new projects, industry insights, and professional achievements
               </p>
               <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="flex-1 px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 transition-all duration-300"
                 />
                 <button 
                   onClick={handleNewsletterSubscribe}
-                  className="px-6 py-3 bg-gradient-to-r from-primary to-blue-600 rounded-lg font-semibold hover:from-primary/80 hover:to-blue-700 transition-colors"
+                  className="px-6 py-3 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 rounded-lg font-semibold text-foreground shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 >
                   Subscribe
                 </button>
@@ -80,38 +91,38 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Main Footer Content */}
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-4 py-16 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {/* Brand Column */}
             <div className="lg:col-span-2">
-              <h2 className="text-2xl font-bold mb-4 text-white">
+              <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-white to-yellow-300 bg-clip-text text-transparent">
                 Imran Usman Shaikh
               </h2>
-              <p className="text-gray-300 mb-6 leading-relaxed">
+              <p className="text-muted-foreground mb-6 leading-relaxed text-lg">
                 Senior Design Engineer specializing in Civil & Structural Design, 3D Modeling, and Production Engineering. Transforming concepts into precision structures.
               </p>
               
               {/* Contact Info */}
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <Phone className="text-primary h-5 w-5" />
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors duration-300">
+                  <Phone className="text-yellow-400 h-5 w-5" />
                   <div>
-                    <p className="text-sm text-gray-300">Phone:</p>
-                    <p className="font-semibold">+91 8698839883</p>
+                    <p className="text-sm text-muted-foreground">Phone:</p>
+                    <p className="font-semibold text-foreground">+91 8698839883</p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <Mail className="text-primary h-5 w-5" />
+                <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors duration-300">
+                  <Mail className="text-yellow-400 h-5 w-5" />
                   <div>
-                    <p className="text-sm text-gray-300">Email:</p>
-                    <p className="font-semibold">imraanshaikh039@gmail.com</p>
+                    <p className="text-sm text-muted-foreground">Email:</p>
+                    <p className="font-semibold text-foreground">imran.shaikh.contact@gmail.com</p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <MapPin className="text-primary h-5 w-5" />
+                <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors duration-300">
+                  <MapPin className="text-yellow-400 h-5 w-5" />
                   <div>
-                    <p className="text-sm text-gray-300">Location:</p>
-                    <p className="font-semibold">India</p>
+                    <p className="text-sm text-muted-foreground">Location:</p>
+                    <p className="font-semibold text-foreground">Maharashtra, India</p>
                   </div>
                 </div>
               </div>
@@ -119,13 +130,19 @@ const Footer: React.FC = () => {
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+              <h3 className="text-xl font-semibold mb-6 text-foreground border-b border-amber-400/30 pb-2">Quick Links</h3>
               <ul className="space-y-3">
                 {footerLinks.quickLinks.map((link, index) => (
                   <li key={index}>
                     <button
-                      onClick={() => scrollToSection(link.href)}
-                      className="text-gray-300 hover:text-primary transition-colors duration-300 text-left"
+                      onClick={() => {
+                        if (link.name === 'Resume Download') {
+                          window.open(link.href, '_blank');
+                        } else {
+                          scrollToSection(link.href);
+                        }
+                      }}
+                      className="text-foreground hover:text-amber-400 transition-colors duration-300 text-left hover:translate-x-1 transform transition-transform"
                     >
                       {link.name}
                     </button>
@@ -136,13 +153,13 @@ const Footer: React.FC = () => {
 
             {/* Services */}
             <div>
-              <h3 className="text-lg font-semibold mb-4">Services</h3>
+              <h3 className="text-xl font-semibold mb-6 text-foreground border-b border-amber-400/30 pb-2">Services</h3>
               <ul className="space-y-3">
                 {footerLinks.services.map((link, index) => (
                   <li key={index}>
                     <button
                       onClick={() => scrollToSection(link.href)}
-                      className="text-gray-300 hover:text-primary transition-colors duration-300 text-left"
+                      className="text-foreground hover:text-amber-400 transition-colors duration-300 text-left hover:translate-x-1 transform transition-transform"
                     >
                       {link.name}
                     </button>
@@ -153,13 +170,13 @@ const Footer: React.FC = () => {
 
             {/* Resources */}
             <div>
-              <h3 className="text-lg font-semibold mb-4">Resources</h3>
+              <h3 className="text-xl font-semibold mb-6 text-foreground border-b border-amber-400/30 pb-2">Resources</h3>
               <ul className="space-y-3">
                 {footerLinks.resources.map((link, index) => (
                   <li key={index}>
                     <button
                       onClick={() => scrollToSection(link.href)}
-                      className="text-gray-300 hover:text-primary transition-colors duration-300 text-left flex items-center gap-2"
+                      className="text-foreground hover:text-amber-400 transition-colors duration-300 text-left flex items-center gap-2 hover:translate-x-1 transform transition-transform"
                     >
                       {link.name === 'Resume Download' && <Download className="h-4 w-4" />}
                       {link.name}
@@ -180,7 +197,7 @@ const Footer: React.FC = () => {
                     <a
                       key={index}
                       href={social.href}
-                      className="text-gray-300 hover:text-primary hover:scale-110 transition-all duration-300"
+                      className="text-foreground hover:text-amber-400 hover:scale-110 transition-all duration-300 p-2 rounded-full hover:bg-white/10"
                       title={social.name}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -192,10 +209,10 @@ const Footer: React.FC = () => {
               </div>
               
               <div className="text-center sm:text-right">
-                <p className="text-gray-300 text-sm">
-                  © 2025 <span className="text-white font-bold">Imran Usman Shaikh</span>. All rights reserved.
+                <p className="text-foreground text-sm">
+                  © 2025 <span className="font-bold text-foreground">Imran Usman Shaikh</span>. All rights reserved.
                 </p>
-                <p className="text-gray-400 text-xs mt-1">
+                <p className="text-muted-foreground text-xs mt-1">
                   Senior Design Engineer | Civil & Structural Design Expert
                 </p>
               </div>
@@ -203,10 +220,24 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
+        {/* Developer Credit */}
+        <div className="border-t border-white/10 relative z-10">
+          <div className="container mx-auto px-4 py-6">
+            <div className="text-center">
+              <p className="text-muted-foreground text-sm">
+                Made with <Heart className="inline h-4 w-4 text-red-400 animate-pulse" /> by{' '}
+                <span className="font-semibold bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 bg-clip-text text-transparent">
+                  Developer-Wajid Daud Tamboli
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Back to Top Button */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-8 right-8 bg-gradient-to-r from-primary to-blue-600 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-50"
+          className="fixed bottom-8 right-8 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-foreground p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-50"
           aria-label="Back to top"
         >
           ↑

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
@@ -7,6 +6,10 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
+import ExperienceSection from '@/components/ExperienceSection';
+import ProjectsSection from '@/components/ProjectsSection';
+import SkillsSection from '@/components/SkillsSection';
+import EducationSection from '@/components/EducationSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import { GoldParticles } from '@/components/GoldParticles';
@@ -23,6 +26,10 @@ const Index = () => {
               <main className="relative z-10">
                 <HeroSection />
                 <AboutSection />
+                <ExperienceSection />
+                <ProjectsSection />
+                <SkillsSection />
+                <EducationSection />
                 <ContactSection />
               </main>
               <Footer />

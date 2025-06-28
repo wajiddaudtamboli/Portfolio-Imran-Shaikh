@@ -117,11 +117,11 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onClose }) => {
                   </div>
                 </div>
 
-                <div className="text-sm text-muted-foreground bg-muted p-3 rounded-md">
+                {/* <div className="text-sm text-muted-foreground bg-muted p-3 rounded-md">
                   <p className="font-medium">Demo Admin Credentials:</p>
                   <p>Email: imran@admin.com</p>
                   <p>Password: Imran@123</p>
-                </div>
+                </div> */}
 
                 <div className="flex gap-2 pt-4">
                   <Button
