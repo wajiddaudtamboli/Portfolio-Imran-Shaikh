@@ -62,7 +62,7 @@ INSERT INTO public.portfolio_sections (section_type, title, content, order_index
 VALUES (
         'about',
         'About Me',
-        '{"description": "Experienced Senior Design Engineer with 5+ years in steel engineering, scaffolding systems, and aluminium fabrication. Specializing in 3D modeling, 2D drafting, and structural design.", "highlights": ["3D Modeling & 2D Drafting", "Structural Design", "Fabrication Drawing", "Building Estimation"]}',
+        '{"description": "Experienced Senior Design Engineer with 4+ years in steel engineering, scaffolding systems, and aluminium fabrication. Specializing in 3D modeling, 2D drafting, and structural design.", "highlights": ["3D Modeling & 2D Drafting", "Structural Design", "Fabrication Drawing", "Building Estimation"]}',
         1
     ),
     (

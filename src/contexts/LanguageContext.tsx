@@ -25,13 +25,13 @@ const translations = {
       name: "Imran Usman Shaikh",
       title: "Senior Design Engineer",
       subtitle: "Specializing in Civil & Structural Design, 3D Modeling, and Production Engineering",
-      yearsExp: "5+ Years Experience",
+      yearsExp: "4+ Years Experience",
       downloadCV: "Download Resume",
       contactMe: "Contact Me"
     },
     about: {
       title: "About Me",
-      description: "Experienced Senior Design Engineer with 5+ years of expertise in Civil & Structural Design, 3D Modeling, and Production Engineering. Specialized in AutoCAD, Revit Architecture, and STAAD Pro with extensive experience in steel engineering and scaffolding systems."
+      description: "Experienced Senior Design Engineer with 4+ years of expertise in Civil & Structural Design, 3D Modeling, and Production Engineering. Specialized in AutoCAD, Revit Architecture, and STAAD Pro with extensive experience in steel engineering and scaffolding systems."
     },
     experience: {
       title: "Professional Experience",
@@ -70,13 +70,13 @@ const translations = {
       name: "इमरान उस्मान शेख",
       title: "सीनियर डिज़ाइन इंजीनियर",
       subtitle: "सिविल और स्ट्रक्चरल डिज़ाइन, 3D मॉडलिंग और प्रोडक्शन इंजीनियरिंग में विशेषज्ञता",
-      yearsExp: "5+ साल का अनुभव",
+      yearsExp: "4+ साल का अनुभव",
       downloadCV: "रिज्यूमे डाउनलोड करें",
       contactMe: "संपर्क करें"
     },
     about: {
       title: "मेरे बारे में",
-      description: "5+ साल के अनुभव के साथ अनुभवी सीनियर डिज़ाइन इंजीनियर। सिविल और स्ट्रक्चरल डिज़ाइन, 3D मॉडलिंग और प्रोडक्शन इंजीनियरिंग में विशेषज्ञता। AutoCAD, Revit Architecture और STAAD Pro में दक्षता।"
+      description: "4+ साल के अनुभव के साथ अनुभवी सीनियर डिज़ाइन इंजीनियर। सिविल और स्ट्रक्चरल डिज़ाइन, 3D मॉडलिंग और प्रोडक्शन इंजीनियरिंग में विशेषज्ञता। AutoCAD, Revit Architecture और STAAD Pro में दक्षता।"
     },
     experience: {
       title: "व्यावसायिक अनुभव",
@@ -115,13 +115,13 @@ const translations = {
       name: "इम्रान उस्मान शेख",
       title: "वरिष्ठ डिझाइन अभियंता",
       subtitle: "सिव्हिल आणि स्ट्रक्चरल डिझाइन, 3D मॉडेलिंग आणि प्रोडक्शन इंजिनीअरिंगमध्ये तज्ञता",
-      yearsExp: "5+ वर्षांचा अनुभव",
+      yearsExp: "4+ वर्षांचा अनुभव",
       downloadCV: "रिझ्युमे डाउनलोड करा",
       contactMe: "संपर्क साधा"
     },
     about: {
       title: "माझ्याबद्दल",
-      description: "5+ वर्षांच्या अनुभवासह अनुभवी वरिष्ठ डिझाइन अभियंता. सिव्हिल आणि स्ट्रक्चरल डिझाइन, 3D मॉडेलिंग आणि प्रोडक्शन इंजिनीअरिंगमध्ये तज्ञता. AutoCAD, Revit Architecture आणि STAAD Pro मध्ये दक्षता."
+      description: "4+ वर्षांच्या अनुभवासह अनुभवी वरिष्ठ डिझाइन अभियंता. सिव्हिल आणि स्ट्रक्चरल डिझाइन, 3D मॉडेलिंग आणि प्रोडक्शन इंजिनीअरिंगमध्ये तज्ञता. AutoCAD, Revit Architecture आणि STAAD Pro मध्ये दक्षता."
     },
     experience: {
       title: "व्यावसायिक अनुभव",
