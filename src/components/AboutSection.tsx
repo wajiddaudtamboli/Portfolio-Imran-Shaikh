@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -42,7 +41,7 @@ const AboutSection = () => {
     {
       icon: <Calendar className="h-5 w-5" />,
       label: "Experience",
-      value: "5+ Years"
+      value: "4+ Years"
     },
     {
       icon: <Award className="h-5 w-5" />,
