@@ -75,7 +75,7 @@ const HeroSection = () => {
               {/* Stats */}
               <div className="flex flex-wrap gap-8">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">5+</div>
+                  <div className="text-3xl font-bold text-primary">4+</div>
                   <div className="text-sm text-muted-foreground">{translations.home.yearsExp}</div>
                 </div>
                 <div className="text-center">
