@@ -4,9 +4,6 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useProfile } from '@/contexts/ProfileContext';
 import { Download, Mail, Phone, MessageCircle } from 'lucide-react';
 
-const gold = '#FFD700';
-const darkBlue = '#003366';
-
 const HeroSection = () => {
   const { translations } = useLanguage();
   const { profileInfo } = useProfile();
@@ -22,7 +19,7 @@ const HeroSection = () => {
     window.open('https://drive.google.com/file/d/1s4DrpZOhWF5NqQWPHVmR-qiPxyuZmgMH/view?usp=sharing', '_blank');
   };
 
-  const defaultProfileImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%231f2937'/%3E%3Ctext x='200' y='200' font-family='Arial, sans-serif' font-size='24' fill='%23ffffff' text-anchor='middle' dy='.3em'%3EProfile Image%3C/text%3E%3C/svg%3E";
+  const defaultProfileImage = "https://res.cloudinary.com/duhhsnbwh/image/upload/v1751130987/Imran_Shaikh_y2y17x.png";
 
   // Function to handle image loading errors
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
@@ -60,9 +57,9 @@ const HeroSection = () => {
         </svg>
       </div>
       
-      <div className="container mx-auto px-4 py-32 relative z-10">
+      <div className="hero-container container mx-auto px-4 py-32 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="hero-grid grid lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
             <div className="space-y-8">
               <div className="space-y-4">
@@ -90,7 +87,11 @@ const HeroSection = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="h-12 px-8 shadow-md rounded-full bg-[var(--gold)] text-[var(--darkBlue)] font-bold hover:brightness-110 transition" onClick={handleDownloadResume}>
+                <Button
+                  size="lg"
+                  className="h-12 px-8 shadow-md rounded-full bg-primary text-primary-foreground font-bold hover:brightness-110 transition"
+                  onClick={handleDownloadResume}
+                >
                   <Download className="mr-2 h-4 w-4" />
                   {translations.home.downloadCV}
                 </Button>
@@ -98,14 +99,9 @@ const HeroSection = () => {
                   <Mail className="mr-2 h-4 w-4" />
                   {translations.home.contactMe}
                 </Button>
-              </div>
-
-              {/* Let's Work Together Button */}
-              <div className="pt-4">
                 <Button
                   size="lg"
-                  className="h-12 px-8 shadow-lg rounded-full bg-[var(--gold)] text-[var(--darkBlue)] font-bold text-xl hover:brightness-110 transition border-2 border-[var(--gold)]"
-                  style={{ background: gold, color: darkBlue, borderColor: gold }}
+                  className="h-12 px-8 shadow-lg rounded-full bg-primary text-primary-foreground font-bold hover:brightness-110 transition border-2 border-primary"
                   onClick={scrollToContact}
                 >
                   Let's Work Together
@@ -133,11 +129,11 @@ const HeroSection = () => {
             <div className="flex justify-center lg:justify-end">
               <div className="relative">
                 {/* Media Frame - Desktop/Tablet View */}
-                <div className="hidden md:block relative">
-                  <div className="w-96 h-96 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 p-6 shadow-2xl">
+                <div className="hero-media-desktop hidden md:block relative">
+                  <div className="w-96 h-96 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 p-6 shadow-2xl transform-gpu transition-transform duration-300 hover:-rotate-1 hover:scale-[1.02]">
                     <img
                       src={getProfileImageUrl()}
-                      alt={`${profileInfo.name || "Imran Usman Shaikh"} - ${profileInfo.title || "Senior Design Engineer"}`}
+                      alt={`${profileInfo.name || "Imran Shaikh"} - ${profileInfo.title || "Senior Design Engineer"}`}
                       className="w-full h-full object-cover rounded-xl border-4 border-[var(--gold)] shadow-lg"
                       onError={handleImageError}
                     />
@@ -145,11 +141,11 @@ const HeroSection = () => {
                 </div>
 
                 {/* Media Frame - Mobile View */}
-                <div className="md:hidden relative">
-                  <div className="w-80 h-80 rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 p-4 shadow-2xl">
+                <div className="hero-media-mobile md:hidden relative">
+                  <div className="w-80 h-80 rounded-[2.25rem] bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 p-4 shadow-2xl ring-1 ring-border/60">
                     <img
                       src={getProfileImageUrl()}
-                      alt={`${profileInfo.name || "Imran Usman Shaikh"} - ${profileInfo.title || "Senior Design Engineer"}`}
+                      alt={`${profileInfo.name || "Imran Shaikh"} - ${profileInfo.title || "Senior Design Engineer"}`}
                       className="w-full h-full object-cover rounded-xl border-4 border-[var(--gold)] shadow-lg"
                       onError={handleImageError}
                     />
@@ -176,7 +172,7 @@ const HeroSection = () => {
                 {/* Portfolio Skills Labels */}
                 <div className="absolute -bottom-12 left-0 right-0 flex justify-center gap-2 flex-wrap">
                   <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">AutoCAD</span>
-                  <span className="bg-secondary/10 px-3 py-1 rounded-full text-sm font-medium text-yellow-400" style={{ color: '#FFD700' }}>STAAD Pro</span>
+                  <span className="bg-secondary/10 px-3 py-1 rounded-full text-sm font-medium text-primary">STAAD Pro</span>
                   <span className="bg-green-500/10 text-green-600 px-3 py-1 rounded-full text-sm font-medium text-foreground">Revit</span>
                 </div>
               </div>

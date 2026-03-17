@@ -1,8 +1,15 @@
 
+import { isSupabaseConfigured, supabase } from '@/integrations/supabase/client';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { User, Session } from '@supabase/supabase-js';
-import { supabase } from '@/integrations/supabase/client';
-import { toast } from '@/hooks/use-toast';
+
+type User = {
+  email?: string | null;
+  user_metadata?: Record<string, unknown>;
+};
+
+type Session = {
+  user?: User | null;
+} | null;
 
 interface AuthContextType {
   user: User | null;
@@ -33,27 +40,41 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const isAdmin = user?.user_metadata?.username === 'Imran' || user?.email === 'imran@admin.com';
 
   useEffect(() => {
+    if (!isSupabaseConfigured) {
+      setLoading(false);
+      return;
+    }
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
-        console.log('Auth state changed:', event, session);
         setSession(session);
         setUser(session?.user ?? null);
         setLoading(false);
       }
     );
 
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
+    // Get initial session with error handling
+    supabase.auth.getSession()
+      .then(({ data: { session }, error }) => {
+        if (error) {
+          console.error('Error getting initial session:', error);
+        }
+        setSession(session);
+        setUser(session?.user ?? null);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Failed to get initial session:', error);
+        setLoading(false);
+      });
 
     return () => subscription.unsubscribe();
   }, []);
 
   const signIn = async (email: string, password: string) => {
+    if (!isSupabaseConfigured) {
+      return { error: new Error('Authentication is disabled.') };
+    }
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
@@ -61,34 +82,39 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
 
       if (error) {
-        toast({
-          title: "Sign in failed",
-          description: error.message,
-          variant: "destructive",
-        });
+        console.error('Supabase sign in error:', error);
+
+        // Handle specific error types
+        let errorMessage = error.message;
+        if (error.message.includes('Failed to fetch') || error.message.includes('network')) {
+          errorMessage = "Unable to connect to the server. Please check your internet connection and Supabase configuration.";
+        } else if (error.message.includes('Invalid login credentials')) {
+          errorMessage = "Invalid email or password. Please try again.";
+        }
+
         return { error };
       }
-
-      toast({
-        title: "Welcome back!",
-        description: "You have successfully signed in.",
-      });
-
       return { error: null };
-    } catch (error: any) {
-      toast({
-        title: "Sign in failed",
-        description: error.message,
-        variant: "destructive",
-      });
-      return { error };
+    } catch (e: unknown) {
+      console.error('Sign in error:', e);
+
+      const err = e as { message?: string; name?: string };
+      let errorMessage = "An unexpected error occurred during sign in.";
+      if (err.message?.includes('Failed to fetch') || err.name === 'TypeError') {
+        errorMessage = "Unable to connect to the server. Please check your Supabase configuration in the .env file.";
+      }
+
+      return { error: e };
     }
   };
 
   const signUp = async (email: string, password: string, username: string, fullName: string) => {
+    if (!isSupabaseConfigured) {
+      return { error: new Error('Sign up is disabled.') };
+    }
     try {
       const redirectUrl = `${window.location.origin}/`;
-      
+
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -102,52 +128,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
 
       if (error) {
-        toast({
-          title: "Sign up failed",
-          description: error.message,
-          variant: "destructive",
-        });
         return { error };
       }
-
-      toast({
-        title: "Account created!",
-        description: "Please check your email to verify your account.",
-      });
-
       return { error: null };
-    } catch (error: any) {
-      toast({
-        title: "Sign up failed",
-        description: error.message,
-        variant: "destructive",
-      });
-      return { error };
+    } catch (e: unknown) {
+      return { error: e };
     }
   };
 
   const signOut = async () => {
+    if (!isSupabaseConfigured) {
+      return;
+    }
     try {
       const { error } = await supabase.auth.signOut();
       if (error) {
-        toast({
-          title: "Sign out failed",
-          description: error.message,
-          variant: "destructive",
-        });
         return;
       }
-
-      toast({
-        title: "Signed out",
-        description: "You have been signed out successfully.",
-      });
-    } catch (error: any) {
-      toast({
-        title: "Sign out failed",
-        description: error.message,
-        variant: "destructive",
-      });
+    } catch (e: unknown) {
     }
   };
 

@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/integrations/supabase/client';
+import { isSupabaseConfigured, supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { useProfile } from '@/contexts/ProfileContext';
 import { Save, Plus, Trash2, Edit, X, Upload, ExternalLink, FileText, Image, Download } from 'lucide-react';
@@ -24,6 +24,9 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
   const [settings, setSettings] = useState<any>({});
 
   useEffect(() => {
+    if (!isSupabaseConfigured) {
+      return;
+    }
     fetchPortfolioData();
     fetchSettings();
   }, []);
@@ -79,12 +82,13 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
   };
 
   const updateSection = async (sectionType: string, content: any) => {
+    if (!isSupabaseConfigured) return;
     try {
       setLoading(true);
-      
+
       const { error } = await supabase
         .from('portfolio_sections' as any)
-        .update({ 
+        .update({
           content,
           updated_at: new Date().toISOString()
         })
@@ -111,12 +115,13 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
   };
 
   const updateSettings = async (settingKey: string, settingValue: any) => {
+    if (!isSupabaseConfigured) return;
     try {
       setLoading(true);
 
       const { error } = await supabase
         .from('portfolio_settings' as any)
-        .update({ 
+        .update({
           setting_value: settingValue,
           updated_at: new Date().toISOString()
         })
@@ -277,7 +282,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
                   <Trash2 className="h-4 w-4" />
                 </Button>
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label>Company</Label>
@@ -346,12 +351,12 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
               </div>
             </div>
           ))}
-          
+
           <Button variant="outline" onClick={addExperience}>
             <Plus className="h-4 w-4 mr-2" />
             Add Experience
           </Button>
-          
+
           <Button onClick={handleSave} disabled={loading}>
             <Save className="h-4 w-4 mr-2" />
             Save Changes
@@ -421,7 +426,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
                   <Trash2 className="h-4 w-4" />
                 </Button>
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label>Title</Label>
@@ -493,12 +498,12 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
               </div>
             </div>
           ))}
-          
+
           <Button variant="outline" onClick={addProject}>
             <Plus className="h-4 w-4 mr-2" />
             Add Project
           </Button>
-          
+
           <Button onClick={handleSave} disabled={loading}>
             <Save className="h-4 w-4 mr-2" />
             Save Changes
@@ -559,7 +564,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
                   <Trash2 className="h-4 w-4" />
                 </Button>
               </div>
-              
+
               <div>
                 <Label>Category Name</Label>
                 <Input
@@ -606,12 +611,12 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
               </div>
             </div>
           ))}
-          
+
           <Button variant="outline" onClick={addSkillCategory}>
             <Plus className="h-4 w-4 mr-2" />
             Add Skill Category
           </Button>
-          
+
           <Button onClick={handleSave} disabled={loading}>
             <Save className="h-4 w-4 mr-2" />
             Save Changes
@@ -669,7 +674,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
                   <Trash2 className="h-4 w-4" />
                 </Button>
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label>Degree</Label>
@@ -714,12 +719,12 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
               </div>
             </div>
           ))}
-          
+
           <Button variant="outline" onClick={addEducation}>
             <Plus className="h-4 w-4 mr-2" />
             Add Education
           </Button>
-          
+
           <Button onClick={handleSave} disabled={loading}>
             <Save className="h-4 w-4 mr-2" />
             Save Changes
@@ -761,7 +766,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
               placeholder="Enter professional title"
             />
           </div>
-          
+
           <div className="space-y-2">
             <Label>Profile Image</Label>
             <div className="space-y-2">
@@ -786,7 +791,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
               </div>
             )}
           </div>
-          
+
           <Button onClick={handleSave} disabled={loading}>
             <Save className="h-4 w-4 mr-2" />
             Save Changes
@@ -877,7 +882,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
             <X className="h-4 w-4" />
           </Button>
         </div>
-        
+
         <div className="p-6">
           <Tabs defaultValue="profile" className="space-y-6">
             <TabsList className="grid w-full grid-cols-7">
@@ -889,31 +894,31 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
               <TabsTrigger value="education">Education</TabsTrigger>
               <TabsTrigger value="contact">Contact</TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="profile">
               <ProfileSection />
             </TabsContent>
-            
+
             <TabsContent value="about">
               <AboutSection />
             </TabsContent>
-            
+
             <TabsContent value="experience">
               <ExperienceSection />
             </TabsContent>
-            
+
             <TabsContent value="projects">
               <ProjectsSection />
             </TabsContent>
-            
+
             <TabsContent value="skills">
               <SkillsSection />
             </TabsContent>
-            
+
             <TabsContent value="education">
               <EducationSection />
             </TabsContent>
-            
+
             <TabsContent value="contact">
               <ContactSection />
             </TabsContent>

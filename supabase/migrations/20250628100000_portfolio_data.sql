@@ -49,7 +49,7 @@ VALUES (
   ),
   (
     'profile_info',
-    '{"name": "Imran Usman Shaikh", "title": "Senior Design Engineer", "profile_image": "/placeholder.svg"}'
+    '{"name": "Imran Shaikh", "title": "Senior Design Engineer", "profile_image": "https://res.cloudinary.com/duhhsnbwh/image/upload/v1751130987/Imran_Shaikh_y2y17x.png"}'
   );
 -- Insert default portfolio sections
 INSERT INTO public.portfolio_sections (section_type, title, content, order_index)

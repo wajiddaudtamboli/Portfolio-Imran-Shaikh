@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { supabase } from '@/integrations/supabase/client';
+import { isSupabaseConfigured, supabase } from '@/integrations/supabase/client';
 import { ExternalLink, Code, Calendar, CheckCircle } from 'lucide-react';
 
 const ProjectsSection = () => {
@@ -15,6 +15,7 @@ const ProjectsSection = () => {
   }, []);
 
   const fetchProjectsData = async () => {
+    if (!isSupabaseConfigured) return;
     try {
       const { data, error } = await supabase
         .from('portfolio_sections')

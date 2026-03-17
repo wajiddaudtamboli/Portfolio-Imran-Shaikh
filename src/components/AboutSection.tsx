@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { supabase } from '@/integrations/supabase/client';
+import { isSupabaseConfigured, supabase } from '@/integrations/supabase/client';
 import { Award, Building, Calendar, MapPin } from 'lucide-react';
 
 const AboutSection = () => {
@@ -13,6 +13,7 @@ const AboutSection = () => {
   }, []);
 
   const fetchAboutData = async () => {
+    if (!isSupabaseConfigured) return;
     try {
       const { data, error } = await supabase
         .from('portfolio_sections')
@@ -51,10 +52,7 @@ const AboutSection = () => {
   ];
 
   const personalDetails = [
-    { label: "Full Name", value: "Imran Usman Shaikh" },
-    { label: "Date of Birth", value: "21 September 1994" },
-    { label: "Languages", value: "Marathi, Hindi, English" },
-    { label: "Interests", value: "Photography, Cricket" }
+    { label: "Full Name", value: "Imran Shaikh" },
   ];
 
   return (

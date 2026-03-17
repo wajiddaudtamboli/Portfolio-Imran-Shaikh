@@ -16,7 +16,6 @@ export const GoldParticles: React.FC = () => {
 
   useEffect(() => {
     if (!isPremium || !canvasRef.current) return;
-
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -80,8 +79,7 @@ export const GoldParticles: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 opacity-30"
-      style={{ mixBlendMode: 'screen' }}
+      className="fixed inset-0 pointer-events-none z-0 opacity-30 mix-blend-screen"
     />
   );
 };

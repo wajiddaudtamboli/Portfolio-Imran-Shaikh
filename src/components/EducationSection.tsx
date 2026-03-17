@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { supabase } from '@/integrations/supabase/client';
+import { isSupabaseConfigured, supabase } from '@/integrations/supabase/client';
 import { GraduationCap, Calendar, MapPin, Award } from 'lucide-react';
 
 const EducationSection = () => {
@@ -14,6 +14,7 @@ const EducationSection = () => {
   }, []);
 
   const fetchEducationData = async () => {
+    if (!isSupabaseConfigured) return;
     try {
       const { data, error } = await supabase
         .from('portfolio_sections')
@@ -53,9 +54,9 @@ const EducationSection = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="max-w-3xl mx-auto flex flex-col gap-8">
             {education.map((edu: any, index: number) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300">
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 w-full">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">

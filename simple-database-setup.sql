@@ -29,7 +29,7 @@ VALUES (
     ),
     (
         'profile_info',
-        '{"name": "Imran Usman Shaikh", "title": "Senior Design Engineer", "profile_image": "https://drive.google.com/file/d/1bYlbvHBgw2tVntfWZ3v-2qzmdlOfiDLI/view?usp=sharing"}'
+        '{"name": "Imran Shaikh", "title": "Senior Design Engineer", "profile_image": "https://res.cloudinary.com/duhhsnbwh/image/upload/v1751130987/Imran_Shaikh_y2y17x.png"}'
     ) ON CONFLICT (setting_key) DO
 UPDATE
 SET setting_value = EXCLUDED.setting_value,

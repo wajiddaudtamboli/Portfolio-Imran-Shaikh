@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { supabase } from '@/integrations/supabase/client';
+import { isSupabaseConfigured, supabase } from '@/integrations/supabase/client';
 import { Building, Calendar, MapPin, Briefcase } from 'lucide-react';
 
 const ExperienceSection = () => {
@@ -13,6 +13,7 @@ const ExperienceSection = () => {
   }, []);
 
   const fetchExperienceData = async () => {
+    if (!isSupabaseConfigured) return;
     try {
       const { data, error } = await supabase
         .from('portfolio_sections')

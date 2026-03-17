@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { isSupabaseConfigured, supabase } from '@/integrations/supabase/client';
 
 interface ProfileInfo {
   name?: string;
@@ -26,13 +26,18 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [profileInfo, setProfileInfo] = useState<ProfileInfo>({});
 
   const refreshProfileInfo = async () => {
-    const { data, error } = await supabase
-      .from('portfolio_settings')
-      .select('setting_value')
-      .eq('setting_key', 'profile_info')
-      .single();
-    if (!error && data?.setting_value) {
-      setProfileInfo(data.setting_value);
+    if (!isSupabaseConfigured) return;
+    try {
+      const { data, error } = await supabase
+        .from('portfolio_settings')
+        .select('setting_value')
+        .eq('setting_key', 'profile_info')
+        .single();
+      if (!error && data?.setting_value) {
+        setProfileInfo(data.setting_value);
+      }
+    } catch (error) {
+      console.error('Error fetching profile info:', error);
     }
   };
 

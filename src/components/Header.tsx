@@ -4,9 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useAuth } from '@/contexts/AuthContext';
-import { Menu, X, Sun, Moon, Globe, Shield, LogOut } from 'lucide-react';
-import AdminLogin from '@/components/AdminLogin';
-import AdminPanel from '@/components/AdminPanel';
+import { Menu, X, Sun, Moon, Globe, LogOut } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,17 +14,14 @@ import {
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showAdminLogin, setShowAdminLogin] = useState(false);
-  const [showAdminPanel, setShowAdminPanel] = useState(false);
   const { language, setLanguage, translations } = useLanguage();
   const { isDarkMode, toggleTheme } = useTheme();
-  const { user, signOut, isAdmin } = useAuth();
+  const { user, signOut } = useAuth();
 
   const navItems = [
     { key: 'home', href: '#home' },
     { key: 'about', href: '#about' },
     { key: 'experience', href: '#experience' },
-    { key: 'projects', href: '#projects' },
     { key: 'skills', href: '#skills' },
     { key: 'education', href: '#education' },
     { key: 'contact', href: '#contact' }
@@ -44,14 +39,6 @@ const Header = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMenuOpen(false);
-  };
-
-  const handleAdminClick = () => {
-    if (user && isAdmin) {
-      setShowAdminPanel(true);
-    } else {
-      setShowAdminLogin(true);
-    }
   };
 
   const handleSignOut = async () => {
@@ -84,17 +71,6 @@ const Header = () => {
 
             {/* Controls */}
             <div className="flex items-center space-x-4">
-              {/* Admin Button */}
-              <Button
-                variant={user && isAdmin ? "default" : "outline"}
-                size="sm"
-                onClick={handleAdminClick}
-                className="h-9"
-              >
-                <Shield className="h-4 w-4 mr-2" />
-                {user && isAdmin ? 'Admin Panel' : 'Admin'}
-              </Button>
-
               {/* User Menu - Show if logged in */}
               {user && (
                 <DropdownMenu>
@@ -171,15 +147,6 @@ const Header = () => {
                     {translations.nav[item.key]}
                   </button>
                 ))}
-                
-                {/* Mobile Admin Button */}
-                <button
-                  onClick={handleAdminClick}
-                  className="text-left py-2 text-primary hover:text-primary/80 transition-colors duration-200 font-medium flex items-center"
-                >
-                  <Shield className="h-4 w-4 mr-2" />
-                  {user && isAdmin ? 'Admin Panel' : 'Admin Login'}
-                </button>
 
                 {/* Mobile Sign Out */}
                 {user && (
@@ -196,16 +163,6 @@ const Header = () => {
           )}
         </div>
       </header>
-
-      {/* Admin Login Modal */}
-      {showAdminLogin && (
-        <AdminLogin onClose={() => setShowAdminLogin(false)} />
-      )}
-
-      {/* Admin Panel */}
-      {showAdminPanel && (
-        <AdminPanel onClose={() => setShowAdminPanel(false)} />
-      )}
     </>
   );
 };

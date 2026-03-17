@@ -22,7 +22,7 @@ const translations = {
     },
     home: {
       greeting: "Hello, I'm",
-      name: "Imran Usman Shaikh",
+      name: "Imran Shaikh",
       title: "Senior Design Engineer",
       subtitle: "Specializing in Civil & Structural Design, 3D Modeling, and Production Engineering",
       yearsExp: "4+ Years Experience",
@@ -67,7 +67,7 @@ const translations = {
     },
     home: {
       greeting: "नमस्ते, मैं हूँ",
-      name: "इमरान उस्मान शेख",
+      name: "इमरान शेख",
       title: "सीनियर डिज़ाइन इंजीनियर",
       subtitle: "सिविल और स्ट्रक्चरल डिज़ाइन, 3D मॉडलिंग और प्रोडक्शन इंजीनियरिंग में विशेषज्ञता",
       yearsExp: "4+ साल का अनुभव",
@@ -112,7 +112,7 @@ const translations = {
     },
     home: {
       greeting: "नमस्कार, मी आहे",
-      name: "इम्रान उस्मान शेख",
+      name: "इम्रान शेख",
       title: "वरिष्ठ डिझाइन अभियंता",
       subtitle: "सिव्हिल आणि स्ट्रक्चरल डिझाइन, 3D मॉडेलिंग आणि प्रोडक्शन इंजिनीअरिंगमध्ये तज्ञता",
       yearsExp: "4+ वर्षांचा अनुभव",

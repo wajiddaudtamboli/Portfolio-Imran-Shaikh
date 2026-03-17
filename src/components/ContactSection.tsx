@@ -5,7 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/integrations/supabase/client';
+import { isSupabaseConfigured, supabase } from '@/integrations/supabase/client';
 import { Mail, Phone, MapPin, Send, Linkedin, FileText, Download } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 
@@ -33,6 +33,7 @@ const ContactSection = ({ whatsappNumber = '918698839883' }) => {
   }, []);
 
   const fetchContactInfo = async () => {
+    if (!isSupabaseConfigured) return;
     try {
       const { data, error } = await supabase
         .from('portfolio_settings')
@@ -119,12 +120,10 @@ const ContactSection = ({ whatsappNumber = '918698839883' }) => {
           href={RESUME_LINK}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block mb-6 w-full"
-          style={{ textDecoration: 'none' }}
+          className="inline-block mb-6 w-full no-underline"
         >
           <Button
-            style={{ background: gold, color: darkBlue, fontWeight: 'bold' }}
-            className="h-12 text-lg w-full flex items-center justify-center gap-2 rounded-full shadow-md border-2 border-[var(--gold)] hover:brightness-110 transition"
+            className="h-12 text-lg w-full flex items-center justify-center gap-2 rounded-full shadow-md border-2 border-primary bg-primary text-primary-foreground font-bold hover:brightness-110 transition"
           >
             <Download className="h-5 w-5 mr-2" />
             Download My Resume
@@ -151,14 +150,14 @@ const ContactSection = ({ whatsappNumber = '918698839883' }) => {
               value={form.reason}
               onChange={handleChange}
                       required
-              style={{ background: gold, color: form.reason ? darkBlue : '#666', fontWeight: 'bold', border: `2px solid ${gold}` }}
-              className="w-full rounded-lg px-3 py-2 focus:outline-none shadow-sm border-2 border-[var(--gold)] hover:brightness-110 transition"
+              aria-label="Reason for Contact"
+              className="w-full rounded-lg px-3 py-2 focus:outline-none shadow-sm border-2 border-primary bg-primary text-primary-foreground font-bold hover:brightness-110 transition"
             >
-              <option value="" style={{ color: '#666', fontWeight: 'normal' }}>Select an option</option>
-              <option value="Want to Hire Me" style={{ color: darkBlue }}>Want to Hire Me</option>
-              <option value="Project" style={{ color: darkBlue }}>Project</option>
-              <option value="Consultation" style={{ color: darkBlue }}>Consultation</option>
-              <option value="Other Work" style={{ color: darkBlue }}>Other Work</option>
+              <option value="">Select an option</option>
+              <option value="Want to Hire Me">Want to Hire Me</option>
+              <option value="Project">Project</option>
+              <option value="Consultation">Consultation</option>
+              <option value="Other Work">Other Work</option>
             </select>
                   </div>
                   <div>
@@ -170,10 +169,10 @@ const ContactSection = ({ whatsappNumber = '918698839883' }) => {
                   </Button>
                 </form>
         {showPreview && (
-          <div className="mt-6 p-4 rounded-xl" style={{ border: `2px solid ${gold}`, background: '#fffbe6' }}>
-            <h3 className="font-bold mb-2" style={{ color: darkBlue }}>WhatsApp Message Preview</h3>
-            <pre className="whitespace-pre-wrap text-base mb-4" style={{ color: darkBlue }}>{getWhatsAppText()}</pre>
-            <Button onClick={handleSend} className="w-full h-12 text-lg rounded-full shadow-md" style={{ background: gold, color: darkBlue, fontWeight: 'bold' }}>
+          <div className="mt-6 p-4 rounded-xl border-2 border-primary bg-muted">
+            <h3 className="font-bold mb-2 text-foreground">WhatsApp Message Preview</h3>
+            <pre className="whitespace-pre-wrap text-base mb-4 text-foreground">{getWhatsAppText()}</pre>
+            <Button onClick={handleSend} className="w-full h-12 text-lg rounded-full shadow-md border-2 border-primary bg-primary text-primary-foreground font-bold hover:brightness-110 transition">
               Send via WhatsApp
             </Button>
           </div>

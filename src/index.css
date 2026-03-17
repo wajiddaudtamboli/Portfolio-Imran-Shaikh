@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,212 +5,268 @@
 /* Gold Premium Design System */
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    /* Gold Premium Colors */
-    --primary: 45 100% 51%; /* Gold #FFD700 */
-    --primary-foreground: 220 13% 18%; /* Dark for gold backgrounds */
-
-    --secondary: 220 13% 91%;
-    --secondary-foreground: 220 9% 46%;
-
-    --muted: 220 13% 96%;
-    --muted-foreground: 220 9% 46%;
-
-    --accent: 45 96% 64%; /* Light Gold */
-    --accent-foreground: 220 13% 18%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 45 100% 51%; /* Gold ring */
-
-    --radius: 0.75rem;
-
-    /* Gold Theme Variables */
-    --gold-primary: #FFD700;
-    --gold-secondary: #FFA500;
-    --gold-accent: #FFEF94;
-    --gold-dark: #B8860B;
-    --rich-black: #121212;
-    --silver: #C0C0C0;
-  }
-
-  .dark {
-    --background: 220 13% 7%; /* Rich Black */
-    --foreground: 220 13% 97%;
-
-    --card: 220 13% 9%;
-    --card-foreground: 220 13% 97%;
-
-    --popover: 220 13% 9%;
-    --popover-foreground: 220 13% 97%;
-
-    /* Gold remains consistent in dark mode */
-    --primary: 45 100% 51%;
-    --primary-foreground: 220 13% 7%;
-
-    --secondary: 220 13% 15%;
-    --secondary-foreground: 220 13% 90%;
-
-    --muted: 220 13% 15%;
-    --muted-foreground: 220 9% 63%;
-
-    --accent: 45 96% 64%;
-    --accent-foreground: 220 13% 7%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 220 13% 15%;
-    --input: 220 13% 15%;
-    --ring: 45 100% 51%;
-  }
+     :root {
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+        /* Gold Premium Colors */
+        --primary: 45 100% 51%;
+        /* Gold #FFD700 */
+        --primary-foreground: 220 13% 18%;
+        /* Dark for gold backgrounds */
+        --secondary: 220 13% 91%;
+        --secondary-foreground: 220 9% 46%;
+        --muted: 220 13% 96%;
+        --muted-foreground: 220 9% 46%;
+        --accent: 45 96% 64%;
+        /* Light Gold */
+        --accent-foreground: 220 13% 18%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 220 13% 91%;
+        --input: 220 13% 91%;
+        --ring: 45 100% 51%;
+        /* Gold ring */
+        --radius: 0.75rem;
+        /* Gold Theme Variables */
+        --gold-primary: #ffd700;
+        --gold-secondary: #ffa500;
+        --gold-accent: #ffef94;
+        --gold-dark: #b8860b;
+        --rich-black: #121212;
+        --silver: #c0c0c0;
+    }
+    .dark {
+        --background: 220 13% 7%;
+        /* Rich Black */
+        --foreground: 220 13% 97%;
+        --card: 220 13% 9%;
+        --card-foreground: 220 13% 97%;
+        --popover: 220 13% 9%;
+        --popover-foreground: 220 13% 97%;
+        /* Gold remains consistent in dark mode */
+        --primary: 45 100% 51%;
+        --primary-foreground: 220 13% 7%;
+        --secondary: 220 13% 15%;
+        --secondary-foreground: 220 13% 90%;
+        --muted: 220 13% 15%;
+        --muted-foreground: 220 9% 63%;
+        --accent: 45 96% 64%;
+        --accent-foreground: 220 13% 7%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 220 13% 15%;
+        --input: 220 13% 15%;
+        --ring: 45 100% 51%;
+    }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', Georgia, serif;
-  }
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Playfair Display', Georgia, serif;
+    }
 }
 
 @layer components {
-  /* Gold Premium Components */
-  .gold-gradient {
-    background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
-  }
-
-  .gold-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600;
-  }
-
-  .gold-border {
-    border-image: linear-gradient(45deg, #FFD700, #FFA500, #FFD700) 1;
-  }
-
-  .gold-shadow {
-    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
-  }
-
-  .gold-card {
-    @apply bg-card border border-primary/20 rounded-lg shadow-lg relative overflow-hidden;
-  }
-
-  .gold-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #FFD700, transparent);
-    animation: shimmer 3s infinite;
-  }
-
-  .luxury-button {
-    @apply relative overflow-hidden bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg;
-  }
-
-  .luxury-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s;
-  }
-
-  .luxury-button:hover::before {
-    left: 100%;
-  }
-
-  /* Premium Animations */
-  @keyframes shimmer {
-    0% { left: -100%; }
-    50% { left: 100%; }
-    100% { left: 100%; }
-  }
-
-  @keyframes goldPulse {
-    0%, 100% { 
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    /* Gold Premium Components */
+    .gold-gradient {
+        background: linear-gradient(135deg, #ffd700, #ffa500, #ffd700);
     }
-    50% { 
-      box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+    .gold-text {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600;
     }
-  }
+    .gold-border {
+        border-image: linear-gradient(45deg, #ffd700, #ffa500, #ffd700) 1;
+    }
+    .gold-shadow {
+        box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+    }
+    .gold-card {
+        @apply bg-card border border-primary/20 rounded-lg shadow-lg relative overflow-hidden;
+    }
+    .gold-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #ffd700, transparent);
+        animation: shimmer 3s infinite;
+    }
+    .luxury-button {
+        @apply relative overflow-hidden bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300;
+    }
+    .luxury-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+    .luxury-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient( 90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s;
+    }
+    .luxury-button:hover::before {
+        left: 100%;
+    }
+    /* Premium Animations */
+    @keyframes shimmer {
+        0% {
+            left: -100%;
+        }
+        50% {
+            left: 100%;
+        }
+        100% {
+            left: 100%;
+        }
+    }
+    @keyframes goldPulse {
+        0%,
+        100% {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        50% {
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+        }
+    }
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+    .gold-pulse {
+        animation: goldPulse 2s infinite;
+    }
+    .float-animation {
+        animation: float 3s ease-in-out infinite;
+    }
+    /* Gold Particle Background */
+    .gold-particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.1;
+    }
+    /* Luxury Section Dividers */
+    .gold-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #ffd700, transparent);
+        margin: 2rem 0;
+    }
+    /* Premium Typography */
+    .luxury-heading {
+        @apply text-4xl font-bold mb-6;
+        font-family: 'Playfair Display', serif;
+        background: linear-gradient(135deg, #ffd700, #ffa500, #ffd700);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .premium-subtitle {
+        @apply text-lg text-muted-foreground font-medium;
+        font-family: 'Montserrat', sans-serif;
+    }
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
-  .gold-pulse {
-    animation: goldPulse 2s infinite;
-  }
-
-  .float-animation {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  /* Gold Particle Background */
-  .gold-particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0.1;
-  }
-
-  /* Luxury Section Dividers */
-  .gold-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #FFD700, transparent);
-    margin: 2rem 0;
-  }
-
-  /* Premium Typography */
-  .luxury-heading {
-    @apply text-4xl lg:text-6xl font-bold mb-6;
-    font-family: 'Playfair Display', serif;
-    background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .premium-subtitle {
-    @apply text-lg lg:text-xl text-muted-foreground font-medium;
-    font-family: 'Montserrat', sans-serif;
-  }
+    @media (min-width: 1024px) {
+        .luxury-heading {
+            @apply text-6xl;
+        }
+        .premium-subtitle {
+            @apply text-xl;
+        }
+    }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        overflow-wrap: anywhere;
+    }
+
+    /* Desktop-only spacing tightening (keep mobile/tablet unchanged) */
+    @media (min-width: 992px) and (pointer: fine) {
+        /* Reduce large vertical gaps between stacked page sections */
+        main > section:not(#home) {
+            padding-top: 3.5rem !important;
+            padding-bottom: 3.5rem !important;
+        }
+
+        /* Hero: avoid forcing full viewport height on desktop */
+        main > section#home {
+            min-height: auto !important;
+            justify-content: flex-start !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* Hero content: replace heavy py-32 with a tighter desktop rhythm */
+        main > section#home .container {
+            padding-top: 6rem !important;
+            padding-bottom: 4rem !important;
+        }
+    }
+
+    /* Phone "Desktop site" mode (touch devices with a desktop-sized layout) */
+    @media (min-width: 992px) and (hover: none) and (pointer: coarse) {
+        /* Stack sections tightly one after another */
+        main > section:not(#home) {
+            padding-top: 2.25rem !important;
+            padding-bottom: 2.25rem !important;
+        }
+
+        /* Hero: remove forced viewport height and big padding */
+        main > section#home {
+            min-height: auto !important;
+            justify-content: flex-start !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        main > section#home .hero-container {
+            padding-top: 5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+
+        /* Force 1-column stacking in "desktop site" phone mode */
+        main > section .hero-grid,
+        main > section .grid {
+            grid-template-columns: 1fr !important;
+        }
+
+        /* Use the phone-style media frame even though viewport is "desktop" */
+        main > section#home .hero-media-desktop {
+            display: none !important;
+        }
+        main > section#home .hero-media-mobile {
+            display: block !important;
+        }
+    }
 }
