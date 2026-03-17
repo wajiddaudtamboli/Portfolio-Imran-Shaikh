@@ -854,15 +854,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
           </div>
           <div className="space-y-2">
             <Label>Resume</Label>
-            <a
-              href="https://drive.google.com/file/d/1s4DrpZOhWF5NqQWPHVmR-qiPxyuZmgMH/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded bg-amber-400 text-[var(--darkBlue)] font-bold hover:bg-amber-500 transition"
-            >
-              <Download className="h-4 w-4" />
-              Download My Resume
-            </a>
+            <p className="text-sm text-muted-foreground">Resume download is disabled.</p>
           </div>
           <Button onClick={handleSave} disabled={loading}>
             <Save className="h-4 w-4 mr-2" />

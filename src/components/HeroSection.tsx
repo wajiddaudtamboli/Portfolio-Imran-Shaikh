@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useProfile } from '@/contexts/ProfileContext';
-import { Download, Mail, Phone, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MessageCircle } from 'lucide-react';
 
 const HeroSection = () => {
   const { translations } = useLanguage();
@@ -13,10 +13,6 @@ const HeroSection = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const handleDownloadResume = () => {
-    window.open('https://drive.google.com/file/d/1s4DrpZOhWF5NqQWPHVmR-qiPxyuZmgMH/view?usp=sharing', '_blank');
   };
 
   const defaultProfileImage = "https://res.cloudinary.com/duhhsnbwh/image/upload/v1751130987/Imran_Shaikh_y2y17x.png";
@@ -61,7 +57,7 @@ const HeroSection = () => {
         <div className="max-w-6xl mx-auto">
           <div className="hero-grid grid lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
-            <div className="space-y-8">
+            <div className="hero-content space-y-8">
               <div className="space-y-4">
                 <p className="text-lg text-muted-foreground font-medium">{translations.home.greeting}</p>
                 <h1 className="text-5xl lg:text-7xl font-bold text-foreground leading-tight font-serif">{profileInfo.name || translations.home.name}</h1>
@@ -87,14 +83,6 @@ const HeroSection = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-4">
-                <Button
-                  size="lg"
-                  className="h-12 px-8 shadow-md rounded-full bg-primary text-primary-foreground font-bold hover:brightness-110 transition"
-                  onClick={handleDownloadResume}
-                >
-                  <Download className="mr-2 h-4 w-4" />
-                  {translations.home.downloadCV}
-                </Button>
                 <Button variant="outline" size="lg" className="h-12 px-8 shadow-md rounded-full text-primary border-primary font-bold hover:bg-primary/10 transition" onClick={scrollToContact}>
                   <Mail className="mr-2 h-4 w-4" />
                   {translations.home.contactMe}

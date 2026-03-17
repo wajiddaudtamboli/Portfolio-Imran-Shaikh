@@ -6,13 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
 import { isSupabaseConfigured, supabase } from '@/integrations/supabase/client';
-import { Mail, Phone, MapPin, Send, Linkedin, FileText, Download } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Linkedin } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 
 const gold = '#FFD700';
 const darkBlue = '#003366';
-
-const RESUME_LINK = 'https://drive.google.com/file/d/1s4DrpZOhWF5NqQWPHVmR-qiPxyuZmgMH/view';
 
 const ContactSection = ({ whatsappNumber = '918698839883' }) => {
   const { translations } = useLanguage();
@@ -78,12 +76,6 @@ const ContactSection = ({ whatsappNumber = '918698839883' }) => {
       href: contactInfo.linkedin || "https://www.linkedin.com/in/imran-shaikh-06785a3a00"
     },
     {
-      icon: <FileText className="h-5 w-5" />,
-      label: "Resume",
-      value: "Download Resume",
-      href: RESUME_LINK
-    },
-    {
       icon: <MapPin className="h-5 w-5" />,
       label: "Location",
       value: "Sindhakhed, Tal. Nilanga, Dist. Latur, Maharashtra",
@@ -116,19 +108,6 @@ const ContactSection = ({ whatsappNumber = '918698839883' }) => {
     <section id="contact" className="py-16 bg-background">
       <div className="container mx-auto max-w-xl bg-background rounded-2xl shadow-2xl p-8 border border-primary/20">
         <h2 className="text-3xl font-bold mb-6 text-foreground">Contact Me</h2>
-        <a
-          href={RESUME_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block mb-6 w-full no-underline"
-        >
-          <Button
-            className="h-12 text-lg w-full flex items-center justify-center gap-2 rounded-full shadow-md border-2 border-primary bg-primary text-primary-foreground font-bold hover:brightness-110 transition"
-          >
-            <Download className="h-5 w-5 mr-2" />
-            Download My Resume
-          </Button>
-        </a>
         <form onSubmit={handlePreview} className="space-y-4">
           <div>
             <Label htmlFor="name" className="text-foreground">Name</Label>

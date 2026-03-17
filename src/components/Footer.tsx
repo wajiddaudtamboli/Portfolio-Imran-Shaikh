@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Mail, Phone, MapPin, Linkedin, Download } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin } from 'lucide-react';
 
 const gold = '#FFD700';
 
@@ -14,8 +14,7 @@ const Footer: React.FC = () => {
       { name: 'Experience', href: '#experience' },
       { name: 'Skills', href: '#skills' },
       { name: 'Education', href: '#education' },
-      { name: 'Contact', href: '#contact' },
-      { name: 'Resume Download', href: 'https://drive.google.com/file/d/1s4DrpZOhWF5NqQWPHVmR-qiPxyuZmgMH/view?usp=sharing' }
+      { name: 'Contact', href: '#contact' }
     ],
     services: [
       { name: 'Structural Design', href: '#services' },
@@ -24,7 +23,6 @@ const Footer: React.FC = () => {
       { name: 'Project Management', href: '#services' }
     ],
     resources: [
-      { name: 'Resume Download', href: 'https://drive.google.com/file/d/1s4DrpZOhWF5NqQWPHVmR-qiPxyuZmgMH/view?usp=sharing' },
       { name: 'Certifications', href: '#education' },
       { name: 'Skills', href: '#skills' }
     ]
@@ -133,13 +131,7 @@ const Footer: React.FC = () => {
                 {footerLinks.quickLinks.map((link, index) => (
                   <li key={index}>
                     <button
-                      onClick={() => {
-                        if (link.name === 'Resume Download') {
-                          window.open(link.href, '_blank');
-                        } else {
-                          scrollToSection(link.href);
-                        }
-                      }}
+                      onClick={() => scrollToSection(link.href)}
                       className="text-white/90 hover:text-amber-400 transition-all duration-300 text-left hover:translate-x-1 transform"
                     >
                       {link.name}
@@ -176,7 +168,6 @@ const Footer: React.FC = () => {
                       onClick={() => scrollToSection(link.href)}
                       className="text-white/90 hover:text-amber-400 transition-all duration-300 text-left flex items-center gap-2 hover:translate-x-1 transform"
                     >
-                      {link.name === 'Resume Download' && <Download className="h-4 w-4" />}
                       {link.name}
                     </button>
                   </li>

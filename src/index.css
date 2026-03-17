@@ -215,13 +215,18 @@
     @media (min-width: 992px) and (pointer: fine) {
         /* Reduce large vertical gaps between stacked page sections */
         main > section:not(#home) {
-            padding-top: 3rem !important;
-            padding-bottom: 3rem !important;
+            padding-top: 2.5rem !important;
+            padding-bottom: 2.5rem !important;
+        }
+
+        main > section {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
         }
 
         /* Hero: avoid forcing full viewport height on desktop */
         main > section#home {
-            min-height: auto !important;
+            min-height: unset !important;
             justify-content: flex-start !important;
             padding-top: 0 !important;
             padding-bottom: 0 !important;
@@ -229,8 +234,8 @@
 
         /* Hero content: replace heavy py-32 with a tighter desktop rhythm */
         main > section#home .container {
-            padding-top: 5.5rem !important;
-            padding-bottom: 3.5rem !important;
+            padding-top: 4.75rem !important;
+            padding-bottom: 3rem !important;
         }
     }
 
@@ -244,7 +249,7 @@
 
         /* Hero: remove forced viewport height and big padding */
         main > section#home {
-            min-height: auto !important;
+            min-height: unset !important;
             justify-content: flex-start !important;
             padding-top: 0 !important;
             padding-bottom: 0 !important;
@@ -253,6 +258,36 @@
         main > section#home .hero-container {
             padding-top: 4.5rem !important;
             padding-bottom: 2.25rem !important;
+        }
+
+        /* Center the stacked content in phone "desktop site" mode */
+        main > section#home .hero-grid {
+            justify-items: center !important;
+        }
+        main > section#home .hero-content {
+            text-align: center !important;
+        }
+        main > section#home .hero-content .flex {
+            justify-content: center !important;
+        }
+
+        main > section#experience {
+            text-align: center !important;
+        }
+        main > section#experience .flex.items-center {
+            justify-content: center !important;
+        }
+        main > section#experience li.flex {
+            justify-content: center !important;
+        }
+
+        main > section#education .max-w-3xl .flex.items-start {
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+        }
+        main > section#education .max-w-3xl .flex.items-center {
+            justify-content: center !important;
         }
 
         /* Force 1-column stacking in "desktop site" phone mode */
