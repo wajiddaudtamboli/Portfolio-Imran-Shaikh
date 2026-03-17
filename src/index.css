@@ -255,25 +255,27 @@
         }
     }
 
-    /* Phone "Desktop site" mode (touch devices with a desktop-sized layout) */
-    @media (min-width: 992px) and (hover: none) and (pointer: coarse) {
+    /* Phone "Desktop site" mode (touch devices with a desktop-sized layout)
+       NOTE: Many mobile browsers use ~980px viewport in Desktop Site mode, so we cover 900–991px too. */
+    @media (min-width: 900px) and (max-width: 991.98px) and (hover: none) and (pointer: coarse) {
         /* Stack sections tightly one after another */
         main > section:not(#home) {
-            padding-top: 2rem !important;
-            padding-bottom: 2rem !important;
+            padding-top: 1.5rem !important;
+            padding-bottom: 1.5rem !important;
         }
 
-        /* Hero: remove forced viewport height and big padding */
+        /* Hero: remove forced viewport height and large vertical centering */
         main > section#home {
-            min-height: unset !important;
+            min-height: 0 !important;
+            align-items: flex-start !important;
             justify-content: flex-start !important;
             padding-top: 0 !important;
             padding-bottom: 0 !important;
         }
 
         main > section#home .hero-container {
-            padding-top: 4.5rem !important;
-            padding-bottom: 2.25rem !important;
+            padding-top: 2.75rem !important;
+            padding-bottom: 1.5rem !important;
         }
 
         /* Center the stacked content in phone "desktop site" mode */
@@ -306,10 +308,85 @@
             justify-content: center !important;
         }
 
-        /* Phone "desktop site" visibility: same higher-contrast muted text */
+        /* Visibility: higher-contrast muted text */
         main > section#home .text-muted-foreground,
         main > section#experience .text-muted-foreground,
-        main > section#education .text-muted-foreground {
+        main > section#education .text-muted-foreground,
+        main > section#about .text-muted-foreground {
+            color: hsl(var(--foreground) / 0.78) !important;
+        }
+
+        /* Force 1-column stacking in "desktop site" phone mode */
+        main > section .hero-grid,
+        main > section .grid {
+            grid-template-columns: 1fr !important;
+        }
+
+        /* Use the phone-style media frame even though viewport is "desktop" */
+        main > section#home .hero-media-desktop {
+            display: none !important;
+        }
+        main > section#home .hero-media-mobile {
+            display: block !important;
+        }
+    }
+
+    @media (min-width: 992px) and (hover: none) and (pointer: coarse) {
+        /* Stack sections tightly one after another */
+        main > section:not(#home) {
+            padding-top: 1.5rem !important;
+            padding-bottom: 1.5rem !important;
+        }
+
+        /* Hero: remove forced viewport height and large vertical centering */
+        main > section#home {
+            min-height: 0 !important;
+            align-items: flex-start !important;
+            justify-content: flex-start !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        main > section#home .hero-container {
+            padding-top: 2.75rem !important;
+            padding-bottom: 1.5rem !important;
+        }
+
+        /* Center the stacked content in phone "desktop site" mode */
+        main > section#home .hero-grid {
+            justify-items: center !important;
+        }
+        main > section#home .hero-content {
+            text-align: center !important;
+        }
+        main > section#home .hero-content .flex {
+            justify-content: center !important;
+        }
+
+        main > section#experience {
+            text-align: center !important;
+        }
+        main > section#experience .flex.items-center {
+            justify-content: center !important;
+        }
+        main > section#experience li.flex {
+            justify-content: center !important;
+        }
+
+        main > section#education .max-w-3xl .flex.items-start {
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+        }
+        main > section#education .max-w-3xl .flex.items-center {
+            justify-content: center !important;
+        }
+
+        /* Visibility: higher-contrast muted text */
+        main > section#home .text-muted-foreground,
+        main > section#experience .text-muted-foreground,
+        main > section#education .text-muted-foreground,
+        main > section#about .text-muted-foreground {
             color: hsl(var(--foreground) / 0.78) !important;
         }
 
