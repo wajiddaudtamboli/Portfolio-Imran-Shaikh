@@ -53,8 +53,8 @@ const AboutSection = () => {
 
   return (
     <section id="about" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
+      <div className="about-container container mx-auto px-4">
+        <div className="about-inner max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-12">
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
@@ -63,7 +63,7 @@ const AboutSection = () => {
             <div className="w-24 h-1 bg-primary mx-auto"></div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="about-grid grid lg:grid-cols-2 gap-12 items-start">
             {/* About Content */}
             <div className="space-y-8">
               <div className="prose prose-lg max-w-none">

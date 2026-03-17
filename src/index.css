@@ -244,6 +244,15 @@
         main > section#education .text-muted-foreground {
             color: hsl(var(--foreground) / 0.78) !important;
         }
+
+        /* About section: fill desktop width (avoid large side whitespace) */
+        main > section#about > .about-container {
+            max-width: none !important;
+        }
+        main > section#about .about-inner {
+            max-width: none !important;
+            width: 100% !important;
+        }
     }
 
     /* Phone "Desktop site" mode (touch devices with a desktop-sized layout) */
