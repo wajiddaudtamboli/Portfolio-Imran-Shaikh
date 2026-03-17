@@ -237,6 +237,13 @@
             padding-top: 4.75rem !important;
             padding-bottom: 3rem !important;
         }
+
+        /* Desktop visibility: make muted text a bit higher-contrast in key sections */
+        main > section#home .text-muted-foreground,
+        main > section#experience .text-muted-foreground,
+        main > section#education .text-muted-foreground {
+            color: hsl(var(--foreground) / 0.78) !important;
+        }
     }
 
     /* Phone "Desktop site" mode (touch devices with a desktop-sized layout) */
@@ -288,6 +295,13 @@
         }
         main > section#education .max-w-3xl .flex.items-center {
             justify-content: center !important;
+        }
+
+        /* Phone "desktop site" visibility: same higher-contrast muted text */
+        main > section#home .text-muted-foreground,
+        main > section#experience .text-muted-foreground,
+        main > section#education .text-muted-foreground {
+            color: hsl(var(--foreground) / 0.78) !important;
         }
 
         /* Force 1-column stacking in "desktop site" phone mode */
