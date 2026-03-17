@@ -51,16 +51,12 @@ const AboutSection = () => {
     }
   ];
 
-  const personalDetails = [
-    { label: "Full Name", value: "Imran Shaikh" },
-  ];
-
   return (
     <section id="about" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
               {translations.about.title}
             </h2>
@@ -87,7 +83,7 @@ const AboutSection = () => {
                   <Card key={index} className="border-l-4 border-l-primary">
                     <CardContent className="p-4">
                       <div className="flex items-center gap-3">
-                        <div className="text-primary">
+                        <div className="text-foreground">
                           {item.icon}
                         </div>
                         <div>
@@ -105,28 +101,8 @@ const AboutSection = () => {
               </div>
             </div>
 
-            {/* Personal Details */}
+            {/* Right Column */}
             <div className="space-y-6">
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-foreground mb-6">
-                    Personal Information
-                  </h3>
-                  <div className="space-y-4">
-                    {personalDetails.map((detail, index) => (
-                      <div key={index} className="flex justify-between items-center py-2 border-b border-border last:border-b-0">
-                        <span className="text-muted-foreground font-medium">
-                          {detail.label}:
-                        </span>
-                        <span className="text-foreground font-semibold">
-                          {detail.value}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
               {/* Key Strengths */}
               <Card>
                 <CardContent className="p-6">

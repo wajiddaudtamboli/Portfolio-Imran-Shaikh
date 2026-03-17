@@ -48,7 +48,7 @@ const ExperienceSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
               Professional Experience
             </h2>
@@ -61,13 +61,13 @@ const ExperienceSection = () => {
 
           <div className="space-y-8">
             {experiences.map((exp: any, index: number) => (
-              <Card key={index} className="border-l-4 border-l-primary">
+              <Card key={index} className="border-l-4 border-l-border">
                 <CardContent className="p-6">
                   <div className="grid lg:grid-cols-4 gap-6">
                     {/* Company Info */}
                     <div className="lg:col-span-2">
                       <div className="flex items-center gap-3 mb-2">
-                        <Building className="h-5 w-5 text-primary" />
+                        <Building className="h-5 w-5 text-foreground" />
                         <h3 className="text-xl font-semibold text-foreground">
                           {exp.company}
                         </h3>
@@ -84,13 +84,13 @@ const ExperienceSection = () => {
                     <div className="space-y-2">
                       <div className="flex items-center gap-2">
                         <Calendar className="h-4 w-4 text-muted-foreground" />
-                        <span className="text-sm text-muted-foreground">
+                        <span className="text-sm text-foreground/70">
                           {exp.duration}
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
                         <MapPin className="h-4 w-4 text-muted-foreground" />
-                        <span className="text-sm text-muted-foreground">
+                        <span className="text-sm text-foreground/70">
                           {exp.location}
                         </span>
                       </div>
@@ -105,8 +105,8 @@ const ExperienceSection = () => {
                     <ul className="space-y-2">
                       {exp.responsibilities?.map((resp: string, respIndex: number) => (
                         <li key={respIndex} className="flex items-start gap-2">
-                          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-muted-foreground">{resp}</span>
+                          <div className="w-2 h-2 bg-foreground/40 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-foreground/80">{resp}</span>
                         </li>
                       ))}
                     </ul>

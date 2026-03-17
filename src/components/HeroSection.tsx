@@ -171,8 +171,8 @@ const HeroSection = () => {
 
                 {/* Portfolio Skills Labels */}
                 <div className="absolute -bottom-12 left-0 right-0 flex justify-center gap-2 flex-wrap">
-                  <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">AutoCAD</span>
-                  <span className="bg-secondary/10 px-3 py-1 rounded-full text-sm font-medium text-primary">STAAD Pro</span>
+                  <span className="bg-muted/70 text-foreground px-3 py-1 rounded-full text-sm font-medium border border-border/60">AutoCAD</span>
+                  <span className="bg-muted/70 px-3 py-1 rounded-full text-sm font-medium text-foreground border border-border/60">STAAD Pro</span>
                   <span className="bg-green-500/10 text-green-600 px-3 py-1 rounded-full text-sm font-medium text-foreground">Revit</span>
                 </div>
               </div>
